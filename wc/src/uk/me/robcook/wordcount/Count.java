@@ -41,7 +41,7 @@ public class Count
 
         var count = 0;
         
-        try (var tokenizer = makeTokenzier(Tokenizers.LINE, args[1]))
+        try (var tokenizer = makeTokenizer(Tokenizers.LINE, args[1]))
         {
             String line;
 
@@ -54,7 +54,7 @@ public class Count
         System.out.println(String.format("%s %d", args[0], count));
     }
 
-    protected Tokenizer makeTokenzier(Tokenizers type, String filename)
+    protected Tokenizer makeTokenizer(Tokenizers type, String filename)
         throws IllegalArgumentException, FileNotFoundException
     {
         return Tokenizer.ofType(type, filename);
