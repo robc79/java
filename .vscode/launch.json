@@ -16,7 +16,7 @@
             "name": "Count",
             "request": "launch",
             "mainClass": "uk.me.robcook.wordcount.Count",
-            "args": ["line", "c:\\tmp\\hype.md"],
+            "args": ["char", "c:\\tmp\\hype.md"],
             "projectName": "java_728a54eb"
         }
     ]

@@ -7,20 +7,17 @@ public class Count
 {
     private final String[] args;
     private final ValidateArgs validator;
-    private final TokenizerFactory tokenizerFactory;
 
-    public Count(String[] args, ValidateArgs validator, TokenizerFactory tokenizerFactory)
+    public Count(String[] args, ValidateArgs validator)
     {
         this.args = args;
         this.validator = validator;
-        this.tokenizerFactory = tokenizerFactory;
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException
     {
         var validator = new ArgsValidator();
-        var tokenizerFactory = new LineTokenizerFactory();
-        var program = new Count(args, validator, tokenizerFactory);
+        var program = new Count(args, validator);
         program.Run();
     }
 
@@ -44,7 +41,7 @@ public class Count
 
         var count = 0;
         
-        try (var tokenizer = tokenizerFactory.Make(args[1]))
+        try (var tokenizer = makeTokenzier(Tokenizers.LINE, args[1]))
         {
             String line;
 
@@ -55,5 +52,11 @@ public class Count
         }
 
         System.out.println(String.format("%s %d", args[0], count));
+    }
+
+    protected Tokenizer makeTokenzier(Tokenizers type, String filename)
+        throws IllegalArgumentException, FileNotFoundException
+    {
+        return Tokenizer.ofType(type, filename);
     }
 }
