@@ -1,4 +1,4 @@
-package uk.me.robcook.wordcount;
+package uk.me.robcook.wordcount.validators;
 
 public interface ValidateArgs
 {

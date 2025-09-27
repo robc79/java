@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import uk.me.robcook.wordcount.counters.*;
 import uk.me.robcook.wordcount.tokenizers.*;
+import uk.me.robcook.wordcount.validators.*;
 
 public class Count
 {

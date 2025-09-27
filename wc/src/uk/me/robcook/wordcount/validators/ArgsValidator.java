@@ -1,4 +1,4 @@
-package uk.me.robcook.wordcount;
+package uk.me.robcook.wordcount.validators;
 
 import java.io.File;
 import java.util.ArrayList;
