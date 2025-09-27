@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import uk.me.robcook.wordcount.counters.*;
+import uk.me.robcook.wordcount.tokenizers.*;
 
 public class Count
 {

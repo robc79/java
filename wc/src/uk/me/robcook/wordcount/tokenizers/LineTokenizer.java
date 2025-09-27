@@ -1,4 +1,4 @@
-package uk.me.robcook.wordcount;
+package uk.me.robcook.wordcount.tokenizers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
