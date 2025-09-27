@@ -1,27 +1,30 @@
 package uk.me.robcook.wordcount;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class Count
 {
     private final String[] args;
     private final ValidateArgs validator;
-    private final Tokenizer tokenizer;
+    private final TokenizerFactory tokenizerFactory;
 
-    public Count(String[] args, ValidateArgs validator, Tokenizer tokenizer)
+    public Count(String[] args, ValidateArgs validator, TokenizerFactory tokenizerFactory)
     {
         this.args = args;
         this.validator = validator;
-        this.tokenizer = tokenizer;
+        this.tokenizerFactory = tokenizerFactory;
     }
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws FileNotFoundException, IOException
     {
         var validator = new ArgsValidator();
-        var tokenizer = new LineTokenizer();
-        var program = new Count(args, validator, tokenizer);
+        var tokenizerFactory = new LineTokenizerFactory();
+        var program = new Count(args, validator, tokenizerFactory);
         program.Run();
     }
 
-    public void Run()
+    public void Run() throws IllegalArgumentException, IOException
     {
         var argsValid = validator.validate(args);
 
@@ -40,14 +43,17 @@ public class Count
         };
 
         var count = 0;
-
-        /*
-        for(String line : tokenizer.splitIntoLines(args[1]))
-        {
-            count += counter.count(line);
-        }
-        */
         
+        try (var tokenizer = tokenizerFactory.Make(args[1]))
+        {
+            String line;
+
+            while ((line = tokenizer.nextLine()) != null)
+            {
+                count += counter.count(line);
+            }
+        }
+
         System.out.println(String.format("%s %d", args[0], count));
     }
 }
