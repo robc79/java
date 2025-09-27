@@ -1,4 +1,6 @@
-package uk.me.robcook.wordcount;
+package uk.me.robcook.wordcount.counters;
+
+import uk.me.robcook.wordcount.Counter;
 
 public class WordCounter implements Counter
 {

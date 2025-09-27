@@ -3,6 +3,8 @@ package uk.me.robcook.wordcount;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import uk.me.robcook.wordcount.counters.*;
+
 public class Count
 {
     private final String[] args;
