@@ -1,7 +1,5 @@
 package uk.me.robcook.wordcount.counters;
 
-import uk.me.robcook.wordcount.Counter;
-
 public class CharCounter implements Counter
 {
     @Override
