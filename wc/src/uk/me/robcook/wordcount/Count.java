@@ -28,7 +28,8 @@ public class Count
     {
         var validator = new ArgsValidator();
 
-        BiFunction<Tokenizers, String, Tokenizer> factory = (type, filename) -> {
+        BiFunction<Tokenizers, String, Tokenizer> factory = (type, filename) ->
+        {
             try
             {
                 return Tokenizer.ofType(type, filename);
