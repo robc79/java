@@ -24,11 +24,14 @@ public class ColourIt
         if (!argsValid)
         {
             System.out.println("Usage: ColourIt filename");
+            System.out.println();
+            System.out.println("Where filename is a DIMACS formatted text file for the graph colouring problem.");
             System.exit(1);
         }
 
         var graph = parser.parse(args[0]);
         var colouring = graph.colour(ColouringHeuristic.SATURATION_DEGREE);
+        colouring.print(System.out);
 
         // Colour graph using greed algorithm and saturation degree heuristic.
     }
