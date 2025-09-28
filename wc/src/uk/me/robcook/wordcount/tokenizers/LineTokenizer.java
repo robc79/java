@@ -31,6 +31,4 @@ public class LineTokenizer implements Tokenizer
     {
         scanner.close();
     }
-
-    
 }

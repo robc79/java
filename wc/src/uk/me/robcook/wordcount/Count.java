@@ -2,6 +2,7 @@ package uk.me.robcook.wordcount;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.function.BiFunction;
 
 import uk.me.robcook.wordcount.counters.*;
 import uk.me.robcook.wordcount.tokenizers.*;
@@ -11,17 +12,34 @@ public class Count
 {
     private final String[] args;
     private final ValidateArgs validator;
+    private final BiFunction<Tokenizers, String, Tokenizer> tokenizerFactory;
 
-    public Count(String[] args, ValidateArgs validator)
+    public Count(
+        String[] args,
+        ValidateArgs validator,
+        BiFunction<Tokenizers, String, Tokenizer> tokenizerFactory)
     {
         this.args = args;
         this.validator = validator;
+        this.tokenizerFactory = tokenizerFactory;
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException
     {
         var validator = new ArgsValidator();
-        var program = new Count(args, validator);
+
+        BiFunction<Tokenizers, String, Tokenizer> factory = (type, filename) -> {
+            try
+            {
+                return Tokenizer.ofType(type, filename);
+            }
+            catch (Exception e)
+            {
+                throw new RuntimeException("<!> Failed to make tokenizer.");
+            }
+        };
+
+        var program = new Count(args, validator, factory);
         program.Run();
     }
 
@@ -45,7 +63,7 @@ public class Count
 
         var count = 0;
         
-        try (var tokenizer = makeTokenizer(Tokenizers.LINE, args[1]))
+        try (var tokenizer = tokenizerFactory.apply(Tokenizers.LINE, args[1]))
         {
             String line;
 
@@ -56,11 +74,5 @@ public class Count
         }
 
         System.out.println(String.format("%s %d", args[0], count));
-    }
-
-    protected Tokenizer makeTokenizer(Tokenizers type, String filename)
-        throws IllegalArgumentException, FileNotFoundException
-    {
-        return Tokenizer.ofType(type, filename);
     }
 }
