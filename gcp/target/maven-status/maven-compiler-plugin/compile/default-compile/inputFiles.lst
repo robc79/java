@@ -1,1 +1,8 @@
-c:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\App.java
+C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\parsers\GraphFileParser.java
+C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\validators\ValidateArgs.java
+C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\domain\ColouringHeuristic.java
+C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\domain\Graph.java
+C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\ColourIt.java
+C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\domain\Colouring.java
+C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\parsers\DimacsFileParser.java
+C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\validators\ArgsValidator.java
