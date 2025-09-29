@@ -1,11 +1,11 @@
-package uk.me.robcook.parsers;
+package uk.me.robcook.gcp.parsers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.Scanner;
 
-import uk.me.robcook.domain.Graph;
+import uk.me.robcook.gcp.domain.Graph;
 
 public class DimacsFileParser implements GraphFileParser
 {

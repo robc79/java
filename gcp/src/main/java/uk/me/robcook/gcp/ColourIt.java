@@ -1,8 +1,8 @@
-package uk.me.robcook;
+package uk.me.robcook.gcp;
 
-import uk.me.robcook.validators.*;
-import uk.me.robcook.domain.*;
-import uk.me.robcook.parsers.*;
+import uk.me.robcook.gcp.validators.*;
+import uk.me.robcook.gcp.domain.*;
+import uk.me.robcook.gcp.parsers.*;
 
 public class ColourIt
 {

@@ -1,6 +1,6 @@
-package uk.me.robcook.parsers;
+package uk.me.robcook.gcp.parsers;
 
-import uk.me.robcook.domain.Graph;
+import uk.me.robcook.gcp.domain.Graph;
 
 public interface GraphFileParser
 {

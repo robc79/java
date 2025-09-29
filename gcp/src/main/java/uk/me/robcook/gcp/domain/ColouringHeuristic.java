@@ -1,4 +1,4 @@
-package uk.me.robcook.domain;
+package uk.me.robcook.gcp.domain;
 
 public enum ColouringHeuristic
 {
