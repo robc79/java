@@ -22,6 +22,11 @@ public class Graph
 
     public int getNumberOfEdges() { return numberOfEdges; }
 
+    public void addEdge(int u, int v)
+    {
+        // TODO: add edge to the adjaceny list.
+    }
+
     public Colouring colour(ColouringHeuristic heuristic)
     {
         // TODO: Colour the graph using the supplied heuristic.

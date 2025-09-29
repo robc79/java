@@ -97,12 +97,7 @@ public class DimacsFileParser implements GraphFileParser
         {
             number = Integer.parseInt(words[2]);
         }
-        catch (ArrayIndexOutOfBoundsException ex)
-        {
-            System.err.println("<!> Failed to parse number of vertices.");
-            number = -1;
-        }
-        catch (NumberFormatException ex)
+        catch (ArrayIndexOutOfBoundsException | NumberFormatException ex)
         {
             System.err.println("<!> Failed to parse number of vertices.");
             number = -1;
@@ -120,12 +115,7 @@ public class DimacsFileParser implements GraphFileParser
         {
             number = Integer.parseInt(words[3]);
         }
-        catch (ArrayIndexOutOfBoundsException ex)
-        {
-            System.err.println("<!> Failed to parse number of edges.");
-            number = -1;
-        }
-        catch (NumberFormatException ex)
+        catch (ArrayIndexOutOfBoundsException | NumberFormatException ex)
         {
             System.err.println("<!> Failed to parse number of edges.");
             number = -1;
@@ -144,13 +134,24 @@ public class DimacsFileParser implements GraphFileParser
             
             if (!line.startsWith("e"))
             {
-                System.err.println(String.format("<!> Expected edge line, but found '%s' instead.", line));
+                System.err.println(String.format("<!> Expected edge line but found '%s' instead.", line));
                 throw new ParseException(line, 0);
             }
 
             var words = line.split(" ");
-            
-            // TODO: parse u and v integers from line.
+            int u;
+            int v;
+
+            try
+            {
+                u = Integer.parseInt(words[1]);
+                v = Integer.parseInt(words[2]);
+            }
+            catch (ArrayIndexOutOfBoundsException | NumberFormatException ex)
+            {
+                System.err.println(String.format("<!> Failed to parse edge '%s'", line));
+                throw new ParseException(line, 0);
+            }
 
             graph.addEdge(u, v);
         }
