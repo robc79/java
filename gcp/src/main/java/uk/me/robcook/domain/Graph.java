@@ -7,24 +7,33 @@ import java.util.Map;
 
 public class Graph
 {
-    private final Map<Integer, List<Integer>> adjacenyList;
-    private int numberofVertices;
+    private final Map<Integer, List<Integer>> adjacencyLists;
+    private int numberOfVertices;
     private int numberOfEdges;
     
     public Graph(final int numberOfVertices, final int numberOfEdges)
     {
-        adjacenyList = new HashMap<Integer, List<Integer>>();
-        this.numberofVertices = numberOfVertices;
+        adjacencyLists = new HashMap<Integer, List<Integer>>();
+        this.numberOfVertices = numberOfVertices;
         this.numberOfEdges = numberOfEdges;
     }
 
-    public int getNumberofVertices() { return numberofVertices; }
+    public int getNumberofVertices() { return numberOfVertices; }
 
     public int getNumberOfEdges() { return numberOfEdges; }
 
     public void addEdge(int u, int v)
     {
-        // TODO: add edge to the adjaceny list.
+        addEdgeImpl(u, v);
+        addEdgeImpl(v, u);
+    }
+
+    public boolean validate()
+    {
+        var verticesCorrect = numberOfVertices == adjacencyLists.size();
+        var edgesCorrect = numberOfEdges == countEdges();
+
+        return verticesCorrect && edgesCorrect;
     }
 
     public Colouring colour(ColouringHeuristic heuristic)
@@ -32,5 +41,37 @@ public class Graph
         // TODO: Colour the graph using the supplied heuristic.
         
         return new Colouring();
+    }
+
+    private void addEdgeImpl(int u, int v)
+    {
+        List<Integer> adjacencyList;
+        
+        if (adjacencyLists.containsKey(u))
+        {
+            adjacencyList = adjacencyLists.get(u);
+        }
+        else
+        {
+            adjacencyList = new ArrayList<Integer>();
+            adjacencyLists.put(u, adjacencyList);
+        }
+
+        if (!adjacencyList.contains(v))
+        {
+            adjacencyList.add(v);
+        }
+    }
+
+    private int countEdges()
+    {
+        var sum = 0;
+
+        for(var adjacencyList : adjacencyLists.values())
+        {
+            sum += adjacencyList.size();
+        }
+
+        return sum;
     }
 }
