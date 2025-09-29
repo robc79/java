@@ -30,6 +30,13 @@ public class ColourIt
         }
 
         var graph = parser.parse(args[0]);
+
+        if (graph == null)
+        {
+            System.err.println("<!> Failed to create graph from file.");
+            System.exit(1);
+        }
+
         var colouring = graph.colour(ColouringHeuristic.SATURATION_DEGREE);
         colouring.print(System.out);
 
