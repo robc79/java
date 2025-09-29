@@ -37,10 +37,14 @@ public class ColourIt
             System.exit(1);
         }
 
+        if (!graph.validate())
+        {
+            System.err.println(("<!> Invalid graph constructed."));
+            System.exit(1);
+        }
+
         var colouring = graph.colour(ColouringHeuristic.SATURATION_DEGREE);
         colouring.print(System.out);
-
-        // Colour graph using greed algorithm and saturation degree heuristic.
     }
 
     public static void main(String[] args)
