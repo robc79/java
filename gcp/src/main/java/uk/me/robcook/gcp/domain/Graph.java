@@ -72,6 +72,6 @@ public class Graph
             sum += adjacencyList.size();
         }
 
-        return sum;
+        return sum / 2;
     }
 }
