@@ -19,16 +19,16 @@ public class ArgsValidator implements ValidateArgs
 
         var file = new File(args[0]);
 
-        if (!file.exists())
-        {
-            return false;
-        }
-
         if (!file.getName().endsWith(".col"))
         {
             return false;
         }
 
+        if (!file.exists())
+        {
+            return false;
+        }
+        
         return true;
     }
 }
