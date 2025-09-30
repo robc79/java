@@ -7,6 +7,11 @@ public class ArgsValidator implements ValidateArgs
     @Override
     public boolean Validate(String[] args)
     {
+        if (args == null)
+        {
+            return false;
+        }
+
         if (args.length != 1)
         {
             return false;
