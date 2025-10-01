@@ -8,11 +8,28 @@ import java.util.Map;
 public class Graph
 {
     private final Map<Integer, List<Integer>> adjacencyLists;
+    
     private int numberOfVertices;
     private int numberOfEdges;
     
+    /**
+     * Construct a graph with a minimum of two vertices and one edge.
+     * 
+     * @param numberOfVertices total vertices for this graph.
+     * @param numberOfEdges total edges for this graph.
+     */
     public Graph(final int numberOfVertices, final int numberOfEdges)
     {
+        if (numberOfVertices < 2)
+        {
+            throw new IllegalArgumentException("Number of vertices must be more than 1.");
+        }
+
+        if (numberOfEdges < 1)
+        {
+            throw new IllegalArgumentException("Number of edges must be more than 0.");
+        }
+
         adjacencyLists = new HashMap<Integer, List<Integer>>();
         this.numberOfVertices = numberOfVertices;
         this.numberOfEdges = numberOfEdges;

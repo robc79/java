@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class ArgsValidatorTest
+public class ArgsValidatorTests
 {
     private static Stream<Arguments> provideFailingArgs()
     {

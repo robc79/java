@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="uk.me.robcook.gcp.validators.ArgsValidatorTest" time="0.144" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="uk.me.robcook.gcp.domain.GraphTests" time="0.045" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\messa\AppData\Local\Temp\surefire3554691772215584589\surefirebooter-20250930140945737_3.jar C:\Users\messa\AppData\Local\Temp\surefire3554691772215584589 2025-09-30T14-09-45_598-jvmRun1 surefire-20250930140945737_1tmp surefire_0-20250930140945737_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\messa\AppData\Local\Temp\surefire860982789998849375\surefirebooter-20251001134827513_3.jar C:\Users\messa\AppData\Local\Temp\surefire860982789998849375 2025-10-01T13-48-27_390-jvmRun1 surefire-20251001134827513_1tmp surefire_0-20251001134827513_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\messa\source\repos\public\java\gcp\target\test-classes;C:\Users\messa\source\repos\public\java\gcp\target\classes;C:\Users\messa\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\messa\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\messa\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\messa\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\messa\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\messa\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\Users\messa\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.1\junit-jupiter-params-5.9.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\messa\AppData\Local\Temp\surefire3554691772215584589\surefirebooter-20250930140945737_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\messa\AppData\Local\Temp\surefire860982789998849375\surefirebooter-20251001134827513_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.8+9-LTS"/>
@@ -59,11 +59,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="shouldSucceed" classname="uk.me.robcook.gcp.validators.ArgsValidatorTest" time="0.057"/>
-  <testcase name="shouldFailIfFileDoesntExist" classname="uk.me.robcook.gcp.validators.ArgsValidatorTest" time="0.003"/>
-  <testcase name="shouldFailIfFilenameNotEndingInCol(String)[1]" classname="uk.me.robcook.gcp.validators.ArgsValidatorTest" time="0.024"/>
-  <testcase name="shouldFailIfFilenameNotEndingInCol(String)[2]" classname="uk.me.robcook.gcp.validators.ArgsValidatorTest" time="0.001"/>
-  <testcase name="shouldFailIfArgsLengthNotEqualToOne(String[])[1]" classname="uk.me.robcook.gcp.validators.ArgsValidatorTest" time="0.002"/>
-  <testcase name="shouldFailIfArgsLengthNotEqualToOne(String[])[2]" classname="uk.me.robcook.gcp.validators.ArgsValidatorTest" time="0.002"/>
-  <testcase name="shouldFailIfArgsLengthNotEqualToOne(String[])[3]" classname="uk.me.robcook.gcp.validators.ArgsValidatorTest" time="0.002"/>
+  <testcase name="shouldSucceedConstructionWithTwoVerticesAndOneEdge" classname="uk.me.robcook.gcp.domain.GraphTests" time="0.022"/>
+  <testcase name="shouldFailConstructionWhenEdgesZero" classname="uk.me.robcook.gcp.domain.GraphTests" time="0.003"/>
+  <testcase name="shouldFailConstructionWhenVerticesOne" classname="uk.me.robcook.gcp.domain.GraphTests" time="0.002"/>
 </testsuite>
