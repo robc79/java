@@ -8,7 +8,7 @@ import java.util.Map;
 public class Graph
 {
     private final Map<Integer, List<Integer>> adjacencyLists;
-    
+
     private int numberOfVertices;
     private int numberOfEdges;
     
@@ -22,12 +22,12 @@ public class Graph
     {
         if (numberOfVertices < 2)
         {
-            throw new IllegalArgumentException("Number of vertices must be more than 1.");
+            throw new IllegalArgumentException("Number of vertices must be 2 or more.");
         }
 
         if (numberOfEdges < 1)
         {
-            throw new IllegalArgumentException("Number of edges must be more than 0.");
+            throw new IllegalArgumentException("Number of edges must be 1 or more.");
         }
 
         adjacencyLists = new HashMap<Integer, List<Integer>>();

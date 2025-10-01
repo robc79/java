@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ public class GraphTests
 
         // Assert
         assertEquals(IllegalArgumentException.class, ex.getClass());
-        assertEquals("Number of vertices must be more than 1.", ex.getMessage());
+        assertEquals("Number of vertices must be 2 or more.", ex.getMessage());
     }
 
     @Test
@@ -36,7 +37,7 @@ public class GraphTests
 
         // Assert
         assertEquals(IllegalArgumentException.class, ex.getClass());
-        assertEquals("Number of edges must be more than 0.", ex.getMessage());
+        assertEquals("Number of edges must be 1 or more.", ex.getMessage());
     }
 
     @Test
@@ -82,5 +83,21 @@ public class GraphTests
 
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void shouldPassValidationWhenNumberOfVerticesAndEdgesMatchTotals()
+    {
+        // Arrange
+        var graph = new Graph(3, 3);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        graph.addEdge(3, 1);
+
+        // Act
+        var result = graph.validate();
+
+        // Assert
+        assertTrue(result);
     }
 }
