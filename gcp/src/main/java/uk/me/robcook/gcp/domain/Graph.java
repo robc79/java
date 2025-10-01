@@ -1,6 +1,7 @@
 package uk.me.robcook.gcp.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,11 @@ public class Graph
     public int getNumberOfVertices() { return numberOfVertices; }
 
     public int getNumberOfEdges() { return numberOfEdges; }
+
+    public Map<Integer, List<Integer>> dump()
+    {
+        return Collections.unmodifiableMap(adjacencyLists);
+    }
 
     public void addEdge(int u, int v)
     {

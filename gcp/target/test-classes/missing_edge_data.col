@@ -1,0 +1,6 @@
+c This is a comment line.
+c So is this.
+p edge 4 3
+e 1 2
+e 3 4
+e 4
