@@ -2,6 +2,7 @@ package uk.me.robcook.gcp.parsers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -10,24 +11,24 @@ import uk.me.robcook.gcp.domain.Graph;
 public class DimacsFileParser implements GraphFileParser
 {
     @Override
-    public Graph parse(String filename)
+    public Graph parse(final String filename, final PrintStream err)
     {
-        try (var scanner = makeScanner(filename))
+        try (var scanner = makeScanner(filename, err))
         {
             if (scanner == null)
             {
                 return null;
             }
             
-            var problemLine = parseProblemLine(scanner);
+            var problemLine = parseProblemLine(scanner, err);
 
             if (problemLine == null)
             {
                 return null;
             }
 
-            var numberOfVertices = parseNumberOfVertices(problemLine);
-            var numberOfEdges = parseNumberOfEdges(problemLine);
+            var numberOfVertices = parseNumberOfVertices(problemLine, err);
+            var numberOfEdges = parseNumberOfEdges(problemLine, err);
 
             if (numberOfVertices == -1 || numberOfEdges == -1)
             {
@@ -38,7 +39,7 @@ public class DimacsFileParser implements GraphFileParser
             
             try
             {
-                parseEdgeLines(scanner, graph);
+                parseEdgeLines(scanner, graph, err);
             }
             catch (ParseException ex)
             {
@@ -49,7 +50,7 @@ public class DimacsFileParser implements GraphFileParser
         }
     }
 
-    private Scanner makeScanner(String filename)
+    private Scanner makeScanner(final String filename, final PrintStream err)
     {
         Scanner scanner = null;
 
@@ -59,13 +60,13 @@ public class DimacsFileParser implements GraphFileParser
         }
         catch (FileNotFoundException ex)
         {
-            System.err.println("<!> File not found.");
+            err.println("<!> File not found.");
         }
 
         return scanner;
     }
 
-    private String parseProblemLine(Scanner scanner)
+    private String parseProblemLine(final Scanner scanner, final PrintStream err)
     {
         String problemLine = null;
         String line = null;
@@ -82,13 +83,13 @@ public class DimacsFileParser implements GraphFileParser
 
         if (problemLine == null)
         {
-            System.err.println("<!> Problem line not found in file.");
+            err.println("<!> Problem line not found in file.");
         }
 
         return problemLine;
     }
 
-    private int parseNumberOfVertices(final String problemLine)
+    private int parseNumberOfVertices(final String problemLine, final PrintStream err)
     {
         var words = problemLine.split(" ");
         int number;
@@ -99,14 +100,14 @@ public class DimacsFileParser implements GraphFileParser
         }
         catch (ArrayIndexOutOfBoundsException | NumberFormatException ex)
         {
-            System.err.println("<!> Failed to parse number of vertices.");
+            err.println("<!> Failed to parse number of vertices.");
             number = -1;
         }
         
         return number;
     }
 
-    private int parseNumberOfEdges(final String problemLine)
+    private int parseNumberOfEdges(final String problemLine, final PrintStream err)
     {
         var words = problemLine.split(" ");
         int number;
@@ -117,14 +118,17 @@ public class DimacsFileParser implements GraphFileParser
         }
         catch (ArrayIndexOutOfBoundsException | NumberFormatException ex)
         {
-            System.err.println("<!> Failed to parse number of edges.");
+            err.println("<!> Failed to parse number of edges.");
             number = -1;
         }
         
         return number;
     }
 
-    private void parseEdgeLines(Scanner scanner, Graph graph) throws ParseException
+    private void parseEdgeLines(
+        final Scanner scanner,
+        final Graph graph,
+        final PrintStream err) throws ParseException
     {
         String line = null;
 
@@ -134,7 +138,7 @@ public class DimacsFileParser implements GraphFileParser
             
             if (!line.startsWith("e"))
             {
-                System.err.println(String.format("<!> Expected edge line but found '%s' instead.", line));
+                err.println(String.format("<!> Expected edge line but found '%s' instead.", line));
                 throw new ParseException(line, 0);
             }
 
@@ -149,7 +153,7 @@ public class DimacsFileParser implements GraphFileParser
             }
             catch (ArrayIndexOutOfBoundsException | NumberFormatException ex)
             {
-                System.err.println(String.format("<!> Failed to parse edge '%s'", line));
+                err.println(String.format("<!> Failed to parse edge '%s'", line));
                 throw new ParseException(line, 0);
             }
 

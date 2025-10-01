@@ -52,7 +52,7 @@ public class GraphTests
 
         // Assert
         assertNotNull(result);
-        assertEquals(vertices, result.getNumberofVertices());
+        assertEquals(vertices, result.getNumberOfVertices());
         assertEquals(edges, result.getNumberOfEdges());
     }
 

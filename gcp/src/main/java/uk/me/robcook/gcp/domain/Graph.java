@@ -35,7 +35,7 @@ public class Graph
         this.numberOfEdges = numberOfEdges;
     }
 
-    public int getNumberofVertices() { return numberOfVertices; }
+    public int getNumberOfVertices() { return numberOfVertices; }
 
     public int getNumberOfEdges() { return numberOfEdges; }
 

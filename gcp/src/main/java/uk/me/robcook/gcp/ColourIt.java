@@ -29,7 +29,7 @@ public class ColourIt
             System.exit(1);
         }
 
-        var graph = parser.parse(args[0]);
+        var graph = parser.parse(args[0], System.err);
 
         if (graph == null)
         {
