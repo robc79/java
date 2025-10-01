@@ -14,6 +14,9 @@ public class Colouring
     
     public void print(PrintStream out)
     {
+        out.println("Colouring: ");
+        out.println();
+        
         for(var i=0; i<colourAssignments.size(); i++)
         {
             out.print(String.format("%d -> ", i));
