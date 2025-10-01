@@ -6,6 +6,6 @@ public class Colouring
 {
     public void print(PrintStream out)
     {
-        // TODO: print details of this colouring to the supplied stream.
+        // TODO: Print details of this colouring to the supplied stream.
     }
 }
