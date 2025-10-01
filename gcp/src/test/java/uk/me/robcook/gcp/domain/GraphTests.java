@@ -1,6 +1,7 @@
 package uk.me.robcook.gcp.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -8,11 +9,6 @@ import org.junit.jupiter.api.Test;
 
 public class GraphTests
 {
-    // Succeeds for positive vertices and edges
-    // invalid when vertices don't match
-    // invalid when edges don't match
-    // valid when vertices and edges match
-
     @Test
     public void shouldFailConstructionWhenVerticesOne()
     {
@@ -57,5 +53,34 @@ public class GraphTests
         assertNotNull(result);
         assertEquals(vertices, result.getNumberofVertices());
         assertEquals(edges, result.getNumberOfEdges());
+    }
+
+    @Test
+    public void shouldFailValidationWhenNumberOfVerticesDoesntMatchTotal()
+    {
+        // Arrange
+        var graph = new Graph(3, 1);
+        graph.addEdge(1, 2);
+
+        // Act
+        var result = graph.validate();
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void shouldFailValidationWhenNumberOfEdgesDoesntMatchTotal()
+    {
+        // Arrange
+        var graph = new Graph(3, 3);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+
+        // Act
+        var result = graph.validate();
+
+        // Assert
+        assertFalse(result);
     }
 }
