@@ -1,10 +1,10 @@
 C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\domain\Colouring.java
 C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\domain\Graph.java
 C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\ColourIt.java
-C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\domain\SaturartionDegreeStrategy.java
 C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\domain\VertexPickingStrategy.java
 C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\parsers\GraphFileParser.java
 C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\validators\ValidateArgs.java
+C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\domain\SaturationDegreeStrategy.java
 C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\validators\ArgsValidator.java
 C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\domain\ColouringHeuristic.java
 C:\Users\messa\source\repos\public\java\gcp\src\main\java\uk\me\robcook\gcp\parsers\DimacsFileParser.java

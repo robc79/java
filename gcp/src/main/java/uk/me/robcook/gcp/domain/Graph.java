@@ -68,10 +68,10 @@ public class Graph
         {
             var vertex = picker.pick(adjacencyLists, colourAssignments);
             var colour = assignVertexColour(colourAssignments, vertex);
-            
+
             if (colourAssignments.size() - 1 < colour)
             {
-                colourAssignments.set(colour, new ArrayList<>(Arrays.asList(vertex)));
+                colourAssignments.add(colour, new ArrayList<>(Arrays.asList(vertex)));
             }
             else
             {
@@ -80,6 +80,39 @@ public class Graph
         }
         
         return new Colouring(colourAssignments);
+    }
+
+    public static List<Integer> coloursOf(final List<Integer> vertices, final List<List<Integer>> colourAssignments)
+    {
+        var colours = new ArrayList<Integer>();
+
+        for (var vertex : vertices)
+        {
+            var assignedColour = assignedColourOf(colourAssignments, vertex);
+
+            if (assignedColour != -1)
+            {
+                colours.add(assignedColour);
+            }
+        }
+
+        return colours;
+    }
+
+    public static int assignedColourOf(final List<List<Integer>> colourAssignments, int vertex)
+    {
+        var assignedColour = -1;
+
+        for (int i=0; i<colourAssignments.size(); i++)
+        {
+            if (colourAssignments.get(i).contains(vertex))
+            {
+                assignedColour = i;
+                break;
+            }
+        }
+
+        return assignedColour;
     }
 
     private void addEdgeImpl(int u, int v)
@@ -131,7 +164,7 @@ public class Graph
         var assignedColour = -1;
         var neighboursOfVertex = adjacencyLists.get(vertex);
         var coloursOfNeighbours = coloursOf(neighboursOfVertex, colourAssignments);
-        
+
         for (var i=0; i<colourAssignments.size(); i++)
         {
             if (!coloursOfNeighbours.contains(i))
@@ -140,38 +173,10 @@ public class Graph
                 break;
             }
         }
-        
-        return assignedColour;
-    }
 
-    private List<Integer> coloursOf(final List<Integer> vertices, final List<List<Integer>> colourAssignments)
-    {
-        var colours = new ArrayList<Integer>();
-
-        for (var vertex : vertices)
+        if (assignedColour == -1)
         {
-            var assignedColour = assignedColourOf(colourAssignments, vertex);
-
-            if (assignedColour != -1)
-            {
-                colours.add(assignedColour);
-            }
-        }
-
-        return colours;
-    }
-
-    private int assignedColourOf(final List<List<Integer>> colourAssignments, int vertex)
-    {
-        var assignedColour = -1;
-
-        for (int i=0; i<colourAssignments.size(); i++)
-        {
-            if (colourAssignments.get(i).contains(vertex))
-            {
-                assignedColour = i;
-                break;
-            }
+            assignedColour = colourAssignments.size();
         }
 
         return assignedColour;

@@ -20,7 +20,7 @@ public class Colouring
 
             for(var vertex : colourAssignments.get(i))
             {
-                out.print(vertex);
+                out.print(String.format("%d ", vertex));
             }
 
             out.println();
