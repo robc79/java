@@ -8,13 +8,16 @@ public class ColourIt
 {
     private final ValidateArgs validator;
     private final GraphFileParser parser;
+    private final VertexPickingStrategy strategy;
 
     public ColourIt(
         final ValidateArgs validator,
-        final GraphFileParser parser)
+        final GraphFileParser parser,
+        final VertexPickingStrategy strategy)
     {
         this.validator = validator;
         this.parser = parser;
+        this.strategy = strategy;
     }
 
     public void run(String[] args)
@@ -43,7 +46,7 @@ public class ColourIt
             System.exit(1);
         }
 
-        var colouring = graph.colour(ColouringHeuristic.SATURATION_DEGREE);
+        var colouring = graph.colour(strategy);
         colouring.print(System.out);
     }
 
@@ -51,7 +54,8 @@ public class ColourIt
     {
         var validator = new ArgsValidator();
         var parser = new DimacsFileParser();
-        var program = new ColourIt(validator, parser);
+        var strategy = new SaturartionDegreeStrategy();
+        var program = new ColourIt(validator, parser, strategy);
         program.run(args);
     }
 }

@@ -1,11 +1,29 @@
 package uk.me.robcook.gcp.domain;
 
 import java.io.PrintStream;
+import java.util.List;
 
 public class Colouring
 {
+    private final List<List<Integer>> colourAssignments;
+
+    public Colouring(List<List<Integer>> colourAssignments)
+    {
+        this.colourAssignments = colourAssignments;
+    }
+    
     public void print(PrintStream out)
     {
-        // TODO: Print details of this colouring to the supplied stream.
+        for(var i=0; i<colourAssignments.size(); i++)
+        {
+            out.print(String.format("%d -> ", i));
+
+            for(var vertex : colourAssignments.get(i))
+            {
+                out.print(vertex);
+            }
+
+            out.println();
+        }
     }
 }

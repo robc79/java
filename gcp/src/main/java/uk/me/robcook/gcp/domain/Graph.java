@@ -1,6 +1,7 @@
 package uk.me.robcook.gcp.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -59,11 +60,26 @@ public class Graph
         return verticesCorrect && edgesCorrect;
     }
 
-    public Colouring colour(ColouringHeuristic heuristic)
+    public Colouring colour(final VertexPickingStrategy picker)
     {
-        // TODO: Colour the graph using the supplied heuristic.
+        var colourAssignments = new ArrayList<List<Integer>>();
+
+        while (sumAssignedVertices(colourAssignments) != numberOfVertices)
+        {
+            var vertex = picker.pick(adjacencyLists, colourAssignments);
+            var colour = assignVertexColour(colourAssignments, vertex);
+            
+            if (colourAssignments.size() - 1 < colour)
+            {
+                colourAssignments.set(colour, new ArrayList<>(Arrays.asList(vertex)));
+            }
+            else
+            {
+                colourAssignments.get(colour).add(vertex);
+            }
+        }
         
-        return new Colouring();
+        return new Colouring(colourAssignments);
     }
 
     private void addEdgeImpl(int u, int v)
@@ -90,11 +106,74 @@ public class Graph
     {
         var sum = 0;
 
-        for(var adjacencyList : adjacencyLists.values())
+        for (var adjacencyList : adjacencyLists.values())
         {
             sum += adjacencyList.size();
         }
 
         return sum / 2;
+    }
+
+    private int sumAssignedVertices(final List<List<Integer>> colourAssignments)
+    {
+        var sum = 0;
+
+        for (var vertices : colourAssignments)
+        {
+            sum += vertices.size();
+        }
+
+        return sum;
+    }
+
+    private int assignVertexColour(final List<List<Integer>> colourAssignments, int vertex)
+    {
+        var assignedColour = -1;
+        var neighboursOfVertex = adjacencyLists.get(vertex);
+        var coloursOfNeighbours = coloursOf(neighboursOfVertex, colourAssignments);
+        
+        for (var i=0; i<colourAssignments.size(); i++)
+        {
+            if (!coloursOfNeighbours.contains(i))
+            {
+                assignedColour = i;
+                break;
+            }
+        }
+        
+        return assignedColour;
+    }
+
+    private List<Integer> coloursOf(final List<Integer> vertices, final List<List<Integer>> colourAssignments)
+    {
+        var colours = new ArrayList<Integer>();
+
+        for (var vertex : vertices)
+        {
+            var assignedColour = assignedColourOf(colourAssignments, vertex);
+
+            if (assignedColour != -1)
+            {
+                colours.add(assignedColour);
+            }
+        }
+
+        return colours;
+    }
+
+    private int assignedColourOf(final List<List<Integer>> colourAssignments, int vertex)
+    {
+        var assignedColour = -1;
+
+        for (int i=0; i<colourAssignments.size(); i++)
+        {
+            if (colourAssignments.get(i).contains(vertex))
+            {
+                assignedColour = i;
+                break;
+            }
+        }
+
+        return assignedColour;
     }
 }
