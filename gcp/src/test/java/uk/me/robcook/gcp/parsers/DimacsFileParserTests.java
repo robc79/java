@@ -3,8 +3,8 @@ package uk.me.robcook.gcp.parsers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.startsWith;
 
 import java.io.PrintStream;
@@ -120,6 +120,7 @@ public class DimacsFileParserTests
         assertEquals(4, result.getNumberOfVertices());
         assertEquals(4, result.getNumberOfEdges());
         assertEquals(4, result.dump().size());
+        assertTrue(result.validate());
         Mockito.verify(mockError, Mockito.never()).println(anyString());
     }
 }
