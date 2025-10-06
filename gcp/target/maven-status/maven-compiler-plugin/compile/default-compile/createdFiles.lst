@@ -5,5 +5,4 @@ uk\me\robcook\gcp\domain\VertexPickingStrategy.class
 uk\me\robcook\gcp\ColourIt.class
 uk\me\robcook\gcp\domain\Graph.class
 uk\me\robcook\gcp\validators\ValidateArgs.class
-uk\me\robcook\gcp\domain\ColouringHeuristic.class
 uk\me\robcook\gcp\parsers\DimacsFileParser.class

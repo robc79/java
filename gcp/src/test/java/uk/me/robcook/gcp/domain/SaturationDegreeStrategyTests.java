@@ -20,7 +20,7 @@ public class SaturationDegreeStrategyTests
         // Arrange
         var graph = makeGraph();
         var assignments = new ArrayList<List<Integer>>();
-        var strategy = new SaturationDegreeStrategy();
+        var strategy = new Graph.SaturationDegreeStrategy();
 
         // Act
         var vertex = strategy.pick(graph, assignments);
@@ -39,7 +39,7 @@ public class SaturationDegreeStrategyTests
         assignments.add(0, new ArrayList<Integer>(Arrays.asList(1)));
         assignments.add(1, new ArrayList<Integer>(Arrays.asList(2, 4)));
 
-        var strategy = new SaturationDegreeStrategy();
+        var strategy = new Graph.SaturationDegreeStrategy();
 
         // Act
         var vertex = strategy.pick(graph, assignments);
@@ -58,7 +58,7 @@ public class SaturationDegreeStrategyTests
         assignments.add(0, new ArrayList<Integer>(Arrays.asList(2)));
         assignments.add(1, new ArrayList<Integer>(Arrays.asList(3)));
 
-        var strategy = new SaturationDegreeStrategy();
+        var strategy = new Graph.SaturationDegreeStrategy();
 
         // Act
         var vertex = strategy.pick(graph, assignments);

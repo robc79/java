@@ -54,7 +54,7 @@ public class ColourIt
     {
         var validator = new ArgsValidator();
         var parser = new DimacsFileParser();
-        var strategy = new SaturationDegreeStrategy();
+        var strategy = new Graph.SaturationDegreeStrategy();
         var program = new ColourIt(validator, parser, strategy);
         program.run(args);
     }
