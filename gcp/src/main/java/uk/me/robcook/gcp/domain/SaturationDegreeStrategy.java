@@ -19,7 +19,7 @@ public class SaturationDegreeStrategy implements VertexPickingStrategy
 
         // Calculate the saturation degree of each uncoloured vertex in the graph.
         // Return the one with the biggest saturation degree.
-        var maxSaturation = 0;
+        var maxSaturation = -1;
         int pickedVertex = -1;
 
         for (var vertex : adjacencyLists.keySet())

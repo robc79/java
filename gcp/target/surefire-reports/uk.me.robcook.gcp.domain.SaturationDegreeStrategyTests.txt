@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: uk.me.robcook.gcp.domain.SaturationDegreeStrategyTests
+-------------------------------------------------------------------------------
+Tests run: 1002, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.693 s -- in uk.me.robcook.gcp.domain.SaturationDegreeStrategyTests
