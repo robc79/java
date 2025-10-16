@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: uk.me.robcook.gcp.parsers.DimacsFileParserTests
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.843 s -- in uk.me.robcook.gcp.parsers.DimacsFileParserTests
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.187 s -- in uk.me.robcook.gcp.parsers.DimacsFileParserTests
