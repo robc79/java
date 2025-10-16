@@ -12,6 +12,11 @@ public class Colouring
         this.colourAssignments = colourAssignments;
     }
     
+    public int getAssignemntCount()
+    {
+        return colourAssignments.size();
+    }
+    
     public void print(PrintStream out)
     {
         out.println("Colouring: ");

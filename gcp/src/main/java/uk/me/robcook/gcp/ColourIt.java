@@ -48,6 +48,8 @@ public class ColourIt
 
         var colouring = graph.colour(strategy);
         colouring.print(System.out);
+        System.out.println();
+        System.out.println(String.format("Coloured with %d colours.", colouring.getAssignemntCount()));
     }
 
     public static void main(String[] args)
