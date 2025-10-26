@@ -1,6 +1,9 @@
 package uk.me.robcook.rosalind.args.validators;
 
+import java.util.Arrays;
 import java.util.Set;
+
+import uk.me.robcook.rosalind.args.commands.ParseCommand;
 
 public class ArgsValidator implements ValidateArgs
 {
@@ -17,6 +20,19 @@ public class ArgsValidator implements ValidateArgs
         var command = args[0];
 
         if (!commands.contains(command))
+        {
+            return false;
+        }
+
+        var commandObject = switch (command)
+        {
+            case "parse" -> new ParseCommand(command);
+            default -> null;
+        };
+
+        var commandArgs = Arrays.copyOfRange(args, 1, args.length);
+
+        if (!commandObject.validateArguments(commandArgs))
         {
             return false;
         }

@@ -27,8 +27,6 @@ public class Ros
     public static void main(String[] args)
     {
         var validator = new ArgsValidator();
-
-
         var program = new Ros(validator);
         program.run(args);
     }
