@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Ros",
+            "request": "launch",
+            "mainClass": "uk.me.robcook.rosalind.Ros",
+            "args": "${command:SpecifyProgramArgs}"
+        },
+        {
+            "type": "java",
             "name": "ColourIt",
             "request": "launch",
             "mainClass": "uk.me.robcook.gcp.ColourIt",

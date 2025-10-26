@@ -1,4 +1,4 @@
-package uk.me.robcook.gcp.validators;
+package uk.me.robcook.rosalind.args.validators;
 
 @FunctionalInterface
 public interface ValidateArgs
