@@ -3,14 +3,16 @@ package uk.me.robcook.rosalind.args.validators;
 import java.util.Arrays;
 import java.util.Set;
 
+import uk.me.robcook.rosalind.args.commands.Command;
 import uk.me.robcook.rosalind.args.commands.ParseCommand;
 
 public class ArgsValidator implements ValidateArgs
 {
     private static final Set<String> commands = Set.of("parse");
+    private Command parsedCommand;
 
     @Override
-    public boolean Validate(final String[] args)
+    public boolean validate(final String[] args)
     {
         if (args.length < 2)
         {
@@ -24,19 +26,30 @@ public class ArgsValidator implements ValidateArgs
             return false;
         }
 
-        var commandObject = switch (command)
+        parsedCommand = switch (command)
         {
             case "parse" -> new ParseCommand(command);
             default -> null;
         };
 
+        if (parsedCommand == null)
+        {
+            return false;
+        }
+
         var commandArgs = Arrays.copyOfRange(args, 1, args.length);
 
-        if (!commandObject.validateArguments(commandArgs))
+        if (!parsedCommand.validateArguments(commandArgs))
         {
             return false;
         }
 
         return true;
+    }
+
+    @Override
+    public Command getCommand()
+    {
+        return parsedCommand;
     }
 }

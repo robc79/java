@@ -1,7 +1,10 @@
 package uk.me.robcook.rosalind.args.validators;
 
-@FunctionalInterface
+import uk.me.robcook.rosalind.args.commands.Command;
+
 public interface ValidateArgs
 {
-    boolean Validate(String[] args);
+    boolean validate(String[] args);
+
+    Command getCommand();
 }

@@ -14,7 +14,7 @@ public class Ros
 
     public void run(String[] args)
     {
-        var argsValid = validator.Validate(args);
+        var argsValid = validator.validate(args);
 
         if (!argsValid)
         {
@@ -22,6 +22,9 @@ public class Ros
             System.out.println();
             System.exit(1);
         }
+
+        var command = validator.getCommand();
+        // TODO: Pass command to a handler to run.
     }
 
     public static void main(String[] args)
