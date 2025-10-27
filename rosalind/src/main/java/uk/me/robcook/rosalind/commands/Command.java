@@ -1,5 +1,6 @@
-package uk.me.robcook.rosalind.args.commands;
+package uk.me.robcook.rosalind.commands;
 
+import java.io.PrintStream;
 import java.text.ParseException;
 
 public abstract class Command

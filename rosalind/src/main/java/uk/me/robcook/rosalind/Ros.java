@@ -4,20 +4,25 @@ import java.text.ParseException;
 
 import uk.me.robcook.rosalind.args.ArgsParser;
 import uk.me.robcook.rosalind.args.ParseArgs;
-import uk.me.robcook.rosalind.args.commands.Command;
+import uk.me.robcook.rosalind.commands.Command;
+import uk.me.robcook.rosalind.commands.CommandName;
+import uk.me.robcook.rosalind.handlers.CommandDispatcher;
+import uk.me.robcook.rosalind.handlers.ParseHandler;
 
 public class Ros
 {
     private final ParseArgs parser;
+    private final CommandDispatcher dispatcher;
 
-    public Ros(ParseArgs validator)
+    public Ros(final ParseArgs validator, final CommandDispatcher dispatcher)
     {
         this.parser = validator;
+        this.dispatcher = dispatcher;
     }
 
     public void run(String[] args)
     {
-        Command command;
+        Command command = null;
 
         try
         {
@@ -32,14 +37,19 @@ public class Ros
             System.out.println();
             System.exit(1);
         }
-        
-        // TODO: Send command to a handler to deal with.
+
+        dispatcher.invoke(command);
     }
 
     public static void main(String[] args)
     {
         var parser = new ArgsParser();
-        var program = new Ros(parser);
+        
+        var dispatcher = new CommandDispatcher();
+        var parseHandler = new ParseHandler();
+        dispatcher.registerHandler(CommandName.parse, parseHandler);
+
+        var program = new Ros(parser, dispatcher);
         program.run(args);
     }
 }

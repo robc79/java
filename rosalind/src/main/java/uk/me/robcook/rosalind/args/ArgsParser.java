@@ -3,9 +3,9 @@ package uk.me.robcook.rosalind.args;
 import java.text.ParseException;
 import java.util.Arrays;
 
-import uk.me.robcook.rosalind.args.commands.Command;
-import uk.me.robcook.rosalind.args.commands.CommandName;
-import uk.me.robcook.rosalind.args.commands.ParseCommand;
+import uk.me.robcook.rosalind.commands.Command;
+import uk.me.robcook.rosalind.commands.CommandName;
+import uk.me.robcook.rosalind.commands.ParseCommand;
 
 public class ArgsParser implements ParseArgs
 {
