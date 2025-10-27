@@ -1,7 +1,6 @@
 package uk.me.robcook.rosalind.commands;
 
 import java.io.File;
-import java.io.PrintStream;
 import java.text.ParseException;
 
 public class ParseCommand extends Command

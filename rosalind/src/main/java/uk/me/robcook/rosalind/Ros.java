@@ -46,7 +46,7 @@ public class Ros
         var parser = new ArgsParser();
         
         var dispatcher = new CommandDispatcher();
-        var parseHandler = new ParseHandler();
+        var parseHandler = new ParseHandler(System.out, System.err);
         dispatcher.registerHandler(CommandName.parse, parseHandler);
 
         var program = new Ros(parser, dispatcher);
