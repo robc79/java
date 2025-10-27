@@ -1,36 +1,45 @@
 package uk.me.robcook.rosalind;
 
-import uk.me.robcook.rosalind.args.validators.ArgsValidator;
-import uk.me.robcook.rosalind.args.validators.ValidateArgs;
+import java.text.ParseException;
+
+import uk.me.robcook.rosalind.args.ArgsParser;
+import uk.me.robcook.rosalind.args.ParseArgs;
+import uk.me.robcook.rosalind.args.commands.Command;
 
 public class Ros
 {
-    private final ValidateArgs validator;
+    private final ParseArgs parser;
 
-    public Ros(ValidateArgs validator)
+    public Ros(ParseArgs validator)
     {
-        this.validator = validator;
+        this.parser = validator;
     }
 
     public void run(String[] args)
     {
-        var argsValid = validator.validate(args);
+        Command command;
 
-        if (!argsValid)
+        try
         {
+            command = parser.validate(args);
+        }
+        catch (ParseException ex)
+        {
+            System.err.println(String.format("<!> %s", ex.getMessage()));
+            System.err.println();
+
             System.out.println("Usage: Ros command args");
             System.out.println();
             System.exit(1);
         }
-
-        var command = validator.getCommand();
-        // TODO: Pass command to a handler to run.
+        
+        // TODO: Send command to a handler to deal with.
     }
 
     public static void main(String[] args)
     {
-        var validator = new ArgsValidator();
-        var program = new Ros(validator);
+        var parser = new ArgsParser();
+        var program = new Ros(parser);
         program.run(args);
     }
 }

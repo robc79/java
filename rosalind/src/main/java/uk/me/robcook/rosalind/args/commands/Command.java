@@ -1,15 +1,21 @@
 package uk.me.robcook.rosalind.args.commands;
 
+import java.text.ParseException;
+
 public abstract class Command
 {
-    private final String name;
+    private final CommandName name;
+    private final String[] args;
 
-    public Command(final String name)
+    public Command(final CommandName name, final String[] args)
     {
         this.name = name;
+        this.args = args;
     }
 
-    public String getName() { return name; }
+    public CommandName getName() { return name; }
 
-    public abstract boolean validateArguments(String[] args);
+    public String[] getArgs() { return args; }
+
+    public abstract void validateArguments(String[] args) throws ParseException;
 }

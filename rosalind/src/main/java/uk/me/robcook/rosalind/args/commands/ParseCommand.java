@@ -1,29 +1,28 @@
 package uk.me.robcook.rosalind.args.commands;
 
 import java.io.File;
+import java.text.ParseException;
 
 public class ParseCommand extends Command
 {
-    public ParseCommand(String name)
+    public ParseCommand(final String[] args)
     {
-        super(name);
+        super(CommandName.parse, args);
     }
 
     @Override
-    public boolean validateArguments(String[] args)
+    public void validateArguments(String[] args) throws ParseException
     {
         if (args.length != 1)
         {
-            return false;
+            throw new ParseException("Invalid number of arguments for command.", -1);
         }
 
         var file = new File(args[0]);
 
         if (!file.exists())
         {
-            return false;
+            throw new ParseException("File supplied does not exist.", -1);
         }
-
-        return true;
     }
 }

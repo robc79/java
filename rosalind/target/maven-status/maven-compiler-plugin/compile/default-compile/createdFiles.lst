@@ -1,5 +1,1 @@
-uk\me\robcook\rosalind\Ros.class
-uk\me\robcook\rosalind\args\validators\ValidateArgs.class
-uk\me\robcook\rosalind\args\commands\Command.class
-uk\me\robcook\rosalind\args\commands\ParseCommand.class
-uk\me\robcook\rosalind\args\validators\ArgsValidator.class
+uk\me\robcook\rosalind\args\ArgsParser$1.class
