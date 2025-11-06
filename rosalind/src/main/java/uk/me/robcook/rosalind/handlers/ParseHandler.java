@@ -11,6 +11,7 @@ import uk.me.robcook.rosalind.domain.GeneticSequence;
 import uk.me.robcook.rosalind.domain.GeneticSequenceBuilder;
 import uk.me.robcook.rosalind.parsers.fasta.HeaderLineParser;
 import uk.me.robcook.rosalind.parsers.fasta.LineParser;
+import uk.me.robcook.rosalind.parsers.fasta.SequenceLineParser;
 
 public class ParseHandler implements CommandHandler<ParseCommand>
 {
@@ -83,11 +84,11 @@ public class ParseHandler implements CommandHandler<ParseCommand>
         var line = scanner.nextLine();
         LineParser lineParser = new HeaderLineParser();
         lineParser.parse(line, builder);
+        lineParser = new SequenceLineParser();
 
         while (scanner.hasNextLine())
         {
             line = scanner.nextLine();
-            lineParser = lineParser.getNextParserFor(line);
             lineParser.parse(line, builder);
         }
 

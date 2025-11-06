@@ -12,10 +12,4 @@ public class SequenceLineParser implements LineParser
     {
        builder.appendSequence(line);
     }
-
-    @Override
-    public LineParser getNextParserFor(String line)
-    {
-        return this;
-    }
 }

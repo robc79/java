@@ -18,10 +18,4 @@ public class HeaderLineParser implements LineParser
         var description = line.substring(1, line.length());
         builder.setDescription(description);
     }
-
-    @Override
-    public LineParser getNextParserFor(final String line)
-    {
-        return new SequenceLineParser();
-    }
 }
