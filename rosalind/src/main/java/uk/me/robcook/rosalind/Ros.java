@@ -32,12 +32,7 @@ public class Ros
         }
         catch (ParseException ex)
         {
-            System.err.println(String.format("<!> %s", ex.getMessage()));
-            System.err.println();
-
-            System.out.println("Usage: Ros command args");
-            System.out.println();
-            System.exit(1);
+            command = new HelpCommand(new String[] {});
         }
 
         dispatcher.invoke(command);
@@ -46,10 +41,11 @@ public class Ros
     public static void main(String[] args)
     {
         var parser = new ArgsParser();
-        
         var dispatcher = new CommandDispatcher();
+        
         var parseHandler = new ParseHandler(System.out, System.err);
         dispatcher.registerHandler(CommandName.parse, parseHandler);
+
         var helpHandler = new HelpHandler(System.out, System.err);
         dispatcher.registerHandler(CommandName.help, helpHandler);
 

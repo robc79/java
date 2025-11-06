@@ -20,5 +20,14 @@ public class HelpHandler implements CommandHandler<HelpCommand>
     public void handle(HelpCommand command)
     {
         out.println(String.format("Help invoked for -> %s", Arrays.toString(command.getArgs())));
+
+        if (command.getArgs().length == 0)
+        {
+            // TODO: Show general help text.
+        }
+        else
+        {
+            // TOOD: Invoke method to show detailed command help text.
+        }
     }
 }

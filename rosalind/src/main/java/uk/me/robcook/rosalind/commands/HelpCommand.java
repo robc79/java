@@ -17,5 +17,16 @@ public class HelpCommand extends Command
         {
             throw new ParseException("Help expects zero or one arguments.", -1);
         }
+        else if (args.length == 1)
+        {
+            try
+            {
+                var commandName = CommandName.valueOf(args[0]);    
+            }
+            catch (IllegalArgumentException ex)
+            {
+                throw new ParseException("Invalid command supplied to help.", -1);
+            }
+        }
     }
 }
