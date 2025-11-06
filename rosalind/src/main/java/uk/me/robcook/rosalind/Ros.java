@@ -6,7 +6,9 @@ import uk.me.robcook.rosalind.args.ArgsParser;
 import uk.me.robcook.rosalind.args.ParseArgs;
 import uk.me.robcook.rosalind.commands.Command;
 import uk.me.robcook.rosalind.commands.CommandName;
+import uk.me.robcook.rosalind.commands.HelpCommand;
 import uk.me.robcook.rosalind.handlers.CommandDispatcher;
+import uk.me.robcook.rosalind.handlers.HelpHandler;
 import uk.me.robcook.rosalind.handlers.ParseHandler;
 
 public class Ros
@@ -48,6 +50,8 @@ public class Ros
         var dispatcher = new CommandDispatcher();
         var parseHandler = new ParseHandler(System.out, System.err);
         dispatcher.registerHandler(CommandName.parse, parseHandler);
+        var helpHandler = new HelpHandler(System.out, System.err);
+        dispatcher.registerHandler(CommandName.help, helpHandler);
 
         var program = new Ros(parser, dispatcher);
         program.run(args);
