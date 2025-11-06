@@ -25,4 +25,15 @@ public class ParseCommand extends Command
             throw new ParseException("File supplied does not exist.", -1);
         }
     }
+
+    @Override
+    public String getHelpText()
+    {
+        var builder = new StringBuilder();
+        builder.append("Usage: Ros parse filename\n\n");
+        builder.append("Where filename is a text file in the FASTA format. ");
+        builder.append("File can contain one or more genetic sequences.");
+
+        return builder.toString();
+    }
 }

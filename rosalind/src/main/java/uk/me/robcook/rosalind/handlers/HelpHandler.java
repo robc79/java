@@ -3,7 +3,9 @@ package uk.me.robcook.rosalind.handlers;
 import java.io.PrintStream;
 import java.util.Arrays;
 
+import uk.me.robcook.rosalind.commands.CommandName;
 import uk.me.robcook.rosalind.commands.HelpCommand;
+import uk.me.robcook.rosalind.commands.ParseCommand;
 
 public class HelpHandler implements CommandHandler<HelpCommand>
 {
@@ -19,15 +21,32 @@ public class HelpHandler implements CommandHandler<HelpCommand>
     @Override
     public void handle(HelpCommand command)
     {
-        out.println(String.format("Help invoked for -> %s", Arrays.toString(command.getArgs())));
-
         if (command.getArgs().length == 0)
         {
-            // TODO: Show general help text.
+            out.println("Usage: Ros command args");
+            out.println("");
+            out.print("Where command is one of: ");
+
+            for(var commandName : CommandName.values())
+            {
+                out.print(String.format("%s, ", commandName));
+            }
+
+            out.println();
+            out.println("For help on a specific command: Ros help command");
         }
         else
         {
-            // TOOD: Invoke method to show detailed command help text.
+            var commandArgs = command.getArgs();
+            var commandName = CommandName.valueOf(commandArgs[0]);
+
+            var targetCommand = switch (commandName)
+            {
+                case CommandName.parse -> new ParseCommand(commandArgs);
+                default -> new HelpCommand(commandArgs);
+            };
+
+            out.println(targetCommand.getHelpText());
         }
     }
 }

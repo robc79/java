@@ -16,10 +16,12 @@ public class ArgsParser implements ParseArgs
     public Command validate(final String[] args) throws ParseException
     {
         CommandName commandName;
+        String[] commandArgs;
 
         if (args.length < 1)
         {
             commandName = CommandName.help;
+            commandArgs = new String[] {};
         }
         else
         {
@@ -31,9 +33,9 @@ public class ArgsParser implements ParseArgs
             {
                 throw new ParseException("Invalid command supplied.", -1);
             }
-        }
 
-        var commandArgs = Arrays.copyOfRange(args, 1, args.length);
+            commandArgs = Arrays.copyOfRange(args, 1, args.length);
+        }
 
         command = switch (commandName)
         {

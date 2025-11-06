@@ -1,11 +1,2 @@
-uk\me\robcook\rosalind\args\ArgsParser.class
 uk\me\robcook\rosalind\args\ArgsParser$1.class
-uk\me\robcook\rosalind\commands\ParseCommand.class
-uk\me\robcook\rosalind\commands\CommandName.class
-uk\me\robcook\rosalind\Ros.class
-uk\me\robcook\rosalind\commands\HelpCommand.class
-uk\me\robcook\rosalind\handlers\CommandDispatcher.class
-uk\me\robcook\rosalind\handlers\CommandHandler.class
-uk\me\robcook\rosalind\args\ParseArgs.class
-uk\me\robcook\rosalind\commands\Command.class
-uk\me\robcook\rosalind\handlers\ParseHandler.class
+uk\me\robcook\rosalind\handlers\HelpHandler$1.class

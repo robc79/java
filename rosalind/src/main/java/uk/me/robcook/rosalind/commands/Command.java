@@ -18,4 +18,6 @@ public abstract class Command
     public String[] getArgs() { return args; }
 
     public abstract void validateArguments(String[] args) throws ParseException;
+
+    public abstract String getHelpText();
 }

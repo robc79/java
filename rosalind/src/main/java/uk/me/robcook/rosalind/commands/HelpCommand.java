@@ -29,4 +29,10 @@ public class HelpCommand extends Command
             }
         }
     }
+
+    @Override
+    public String getHelpText()
+    {
+        return "Usage: Ros help [command]";
+    }
 }
