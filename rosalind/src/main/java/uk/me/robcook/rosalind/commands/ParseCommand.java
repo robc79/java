@@ -32,7 +32,7 @@ public class ParseCommand extends Command
         var builder = new StringBuilder();
         builder.append("Usage: Ros parse filename\n\n");
         builder.append("Where filename is a text file in the FASTA format. ");
-        builder.append("File can contain one or more genetic sequences.");
+        builder.append("File can contain one genetic sequence.");
 
         return builder.toString();
     }
