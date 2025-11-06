@@ -1,7 +1,6 @@
 package uk.me.robcook.rosalind.handlers;
 
 import java.io.PrintStream;
-import java.util.Arrays;
 
 import uk.me.robcook.rosalind.commands.Command;
 import uk.me.robcook.rosalind.commands.CommandName;
@@ -11,12 +10,10 @@ import uk.me.robcook.rosalind.commands.ParseCommand;
 public class HelpHandler implements CommandHandler<HelpCommand>
 {
     private final PrintStream out;
-    private final PrintStream err;
 
-    public HelpHandler(final PrintStream out, final PrintStream err)
+    public HelpHandler(final PrintStream out)
     {
         this.out = out;
-        this.err = err;
     }
 
     @Override
