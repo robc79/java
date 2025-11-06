@@ -3,7 +3,6 @@ package uk.me.robcook.rosalind.handlers;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.security.GeneralSecurityException;
 import java.text.ParseException;
 import java.util.Scanner;
 
