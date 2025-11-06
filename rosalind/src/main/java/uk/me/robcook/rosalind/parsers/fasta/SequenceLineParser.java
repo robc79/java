@@ -10,6 +10,12 @@ public class SequenceLineParser implements LineParser
     @Override
     public void parse(String line, GeneticSequenceBuilder builder) throws ParseException
     {
+       builder.appendSequence(line);
     }
-    
+
+    @Override
+    public LineParser getNextParserFor(String line)
+    {
+        return this;
+    }
 }

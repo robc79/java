@@ -38,8 +38,17 @@ public class ParseHandler implements CommandHandler<ParseCommand>
             try
             {
                 var sequence = parse(scanner);
+
+                if (sequence == null)
+                {
+                    err.println("<!> No sequence found.");
+
+                    return;
+                }
+
+                // TODO: Print sequence to out stream.
             }
-            catch (ParseException ex)
+            catch (ParseException | IllegalStateException ex)
             {
                 err.println(String.format("<!> %s", ex.getMessage()));
             }
@@ -62,14 +71,22 @@ public class ParseHandler implements CommandHandler<ParseCommand>
         return scanner;
     }
 
-    private GeneticSequence parse(final Scanner scanner) throws ParseException
+    private GeneticSequence parse(final Scanner scanner) throws ParseException, IllegalStateException
     {
+        if (!scanner.hasNextLine())
+        {
+            return null;
+        }
+
         var builder = new GeneticSequenceBuilder();
+        var line = scanner.nextLine();
         LineParser lineParser = new HeaderLineParser();
+        lineParser.parse(line, builder);
 
         while (scanner.hasNextLine())
         {
-            var line = scanner.nextLine();
+            line = scanner.nextLine();
+            lineParser = lineParser.getNextParserFor(line);
             lineParser.parse(line, builder);
         }
 
