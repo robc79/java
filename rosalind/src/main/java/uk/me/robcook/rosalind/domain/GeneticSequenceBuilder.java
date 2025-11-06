@@ -1,12 +1,14 @@
 package uk.me.robcook.rosalind.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GeneticSequenceBuilder
 {
     private String description;
     private StringBuilder sequence;
+
+    public GeneticSequenceBuilder()
+    {
+        sequence = new StringBuilder();
+    }
 
     public GeneticSequenceBuilder setDescription(final String description)
     {
@@ -24,7 +26,6 @@ public class GeneticSequenceBuilder
 
     public GeneticSequence build()
     {
-        // TODO: Populate a sequence and return it. Throw exception on failure.
-        return new GeneticSequence();
+        return new GeneticSequence(description, sequence.toString());
     }
 }

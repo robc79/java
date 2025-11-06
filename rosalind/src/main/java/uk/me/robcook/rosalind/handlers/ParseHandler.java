@@ -3,6 +3,7 @@ package uk.me.robcook.rosalind.handlers;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.security.GeneralSecurityException;
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -27,6 +28,7 @@ public class ParseHandler implements CommandHandler<ParseCommand>
     {
         var filename = command.getArgs()[0];
         out.println(String.format("Parsing file -> '%s'.", filename));
+        out.println();
         
         try (var scanner = makeScanner(filename, err))
         {
@@ -46,7 +48,7 @@ public class ParseHandler implements CommandHandler<ParseCommand>
                     return;
                 }
 
-                // TODO: Print sequence to out stream.
+                dump(sequence);
             }
             catch (ParseException | IllegalStateException ex)
             {
@@ -91,5 +93,13 @@ public class ParseHandler implements CommandHandler<ParseCommand>
         }
 
         return builder.build();
+    }
+
+    private void dump(GeneticSequence sequence)
+    {
+        out.println(String.format("Description -> %s", sequence.getDescription()));
+        out.println();
+        out.println("Sequence:");
+        out.println(sequence.getSequence());
     }
 }

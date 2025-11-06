@@ -1,11 +1,9 @@
 package uk.me.robcook.rosalind.parsers.fasta;
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 
 import java.text.ParseException;
-import java.util.function.BiConsumer;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +14,7 @@ import org.mockito.Mockito;
 
 import uk.me.robcook.rosalind.domain.GeneticSequenceBuilder;
 
-public class HeaderLineParserTests
+public class SequenceLineParserTests
 {
     @ParameterizedTest
     @NullSource
@@ -35,31 +33,17 @@ public class HeaderLineParserTests
     }
 
     @Test
-    public void shouldFailIfLineDoesntBeginWithRightAngleBracketChar()
+    public void shouldAppendSequence() throws ParseException
     {
         // Arrange
-        var parser = new HeaderLineParser();
-        var builder = new GeneticSequenceBuilder();
-        var badLine = "no right angle bracket here!";
-
-        // Act
-
-        // Assert
-        assertThrows(ParseException.class, () -> parser.parse(badLine, builder));
-    }
-
-    @Test
-    public void shouldSetDescription() throws ParseException
-    {
-        // Arrange
-        var parser = new HeaderLineParser();
+        var parser = new SequenceLineParser();
         var builder = Mockito.mock(GeneticSequenceBuilder.class);
-        var line = ">some description here";
+        var line = "any sequence of chars here";
 
         // Act
         parser.parse(line, builder);
 
         // Assert
-        Mockito.verify(builder, Mockito.times(1)).setDescription(anyString());
+        Mockito.verify(builder, Mockito.times(1)).appendSequence(line);
     }
 }
