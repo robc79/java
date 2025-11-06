@@ -16,9 +16,9 @@ public class Ros
     private final ParseArgs parser;
     private final CommandDispatcher dispatcher;
 
-    public Ros(final ParseArgs validator, final CommandDispatcher dispatcher)
+    public Ros(final ParseArgs parser, final CommandDispatcher dispatcher)
     {
-        this.parser = validator;
+        this.parser = parser;
         this.dispatcher = dispatcher;
     }
 
@@ -28,7 +28,7 @@ public class Ros
 
         try
         {
-            command = parser.validate(args);
+            command = parser.parseAndValidate(args);
         }
         catch (ParseException ex)
         {

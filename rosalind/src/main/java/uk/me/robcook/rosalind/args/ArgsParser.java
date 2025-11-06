@@ -13,7 +13,7 @@ public class ArgsParser implements ParseArgs
     private Command command;
 
     @Override
-    public Command validate(final String[] args) throws ParseException
+    public Command parseAndValidate(final String[] args) throws ParseException
     {
         CommandName commandName;
         String[] commandArgs;
