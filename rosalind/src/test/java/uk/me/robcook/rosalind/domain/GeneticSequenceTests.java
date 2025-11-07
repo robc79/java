@@ -18,6 +18,6 @@ public class GeneticSequenceTests
 
         // Assert
         assertEquals(description, sut.getDescription());
-        assertEquals(sequence, sut.getSequence());
+        assertEquals(sequence.toUpperCase(), sut.getSequence());
     }
 }

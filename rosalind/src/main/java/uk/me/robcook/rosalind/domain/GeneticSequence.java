@@ -8,7 +8,7 @@ public class GeneticSequence
     public GeneticSequence(final String description, final String sequence)
     {
         this.description = description;
-        this.sequence = sequence;
+        this.sequence = sequence.toUpperCase();
     }
 
     public String getDescription() { return description; }

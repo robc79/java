@@ -27,9 +27,7 @@ public class ParseHandler implements CommandHandler<ParseCommand>
     public void handle(ParseCommand command)
     {
         var filename = command.getArgs()[0];
-        out.println(String.format("Parsing file -> '%s'.", filename));
-        out.println();
-        
+
         try (var scanner = makeScanner(filename, err))
         {
             if (scanner == null)
