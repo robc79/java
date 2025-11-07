@@ -47,14 +47,14 @@ public class ParseHandlerTests
 
         var sut = new ParseHandler(mockOut, mockErr);
 
-        final var filename = "valid_sequence.txt";
+        final var filename = "not_there.txt";
         var command = new ParseCommand(new String[] { filename });
 
         // Act
         sut.handle(command);
 
         // Assert
-        Mockito.verify(mockErr, times(1)).println(startsWith("<!>"));
+        Mockito.verify(mockErr, times(1)).println("<!> File not found.");
     }
 
     @Test
@@ -75,7 +75,7 @@ public class ParseHandlerTests
         sut.handle(command);
 
         // Assert
-        Mockito.verify(mockErr, times(1)).println(startsWith("<!>"));
+        Mockito.verify(mockErr, times(1)).println("<!> Invalid starting character, expected '>'.");
     }
 
     @Test
@@ -96,7 +96,7 @@ public class ParseHandlerTests
         sut.handle(command);
 
         // Assert
-        Mockito.verify(mockErr, times(1)).println(startsWith("<!>"));
+        Mockito.verify(mockErr, times(1)).println("<!> Both description and sequence must be set.");
     }
 
     @Test
@@ -117,6 +117,6 @@ public class ParseHandlerTests
         sut.handle(command);
 
         // Assert
-        Mockito.verify(mockErr, times(1)).println(startsWith("<!>"));
+        Mockito.verify(mockErr, times(1)).println(startsWith("<!> No sequence found."));
     }
 }
