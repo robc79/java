@@ -24,8 +24,15 @@ public class GeneticSequenceBuilder
         return this;
     }
 
-    public GeneticSequence build()
+    public GeneticSequence build() throws IllegalStateException
     {
-        return new GeneticSequence(description, sequence.toString());
+        var sequenceString = sequence.toString();
+
+        if (description == null || sequenceString.length() < 1)
+        {
+            throw new IllegalStateException("Both description and sequence must be set.");
+        }
+
+        return new GeneticSequence(description, sequenceString);
     }
 }
