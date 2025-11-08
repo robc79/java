@@ -52,7 +52,7 @@ public class Ros
         var helpHandler = new HelpHandler(System.out);
         dispatcher.registerHandler(CommandName.help, helpHandler);
 
-        var countHandler = new CountHandler(System.out, System.err);
+        var countHandler = new CountHandler(System.out, System.err, fileParser);
         dispatcher.registerHandler(CommandName.count, countHandler);
 
         var program = new Ros(parser, dispatcher);

@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import uk.me.robcook.rosalind.commands.Command;
 import uk.me.robcook.rosalind.commands.CommandName;
+import uk.me.robcook.rosalind.commands.CountCommand;
 import uk.me.robcook.rosalind.commands.HelpCommand;
 import uk.me.robcook.rosalind.commands.ParseCommand;
 
@@ -41,6 +42,7 @@ public class ArgsParser implements ParseArgs
         {
             case CommandName.help -> new HelpCommand(commandArgs);
             case CommandName.parse -> new ParseCommand(commandArgs);
+            case CommandName.count -> new CountCommand(commandArgs);
             default -> null;
         };
 

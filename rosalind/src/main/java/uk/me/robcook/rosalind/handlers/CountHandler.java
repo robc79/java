@@ -3,20 +3,30 @@ package uk.me.robcook.rosalind.handlers;
 import java.io.PrintStream;
 
 import uk.me.robcook.rosalind.commands.CountCommand;
+import uk.me.robcook.rosalind.parsers.fasta.FileParser;
 
 public class CountHandler implements CommandHandler<CountCommand>
 {
     private final PrintStream out;
     private final PrintStream err;
+    private final FileParser parser;
 
-    public CountHandler(final PrintStream out, final PrintStream err)
+    public CountHandler(final PrintStream out, final PrintStream err, final FileParser parser)
     {
         this.out = out;
         this.err = err;
+        this.parser = parser;
     }
 
     @Override
     public void handle(CountCommand command)
     {
+        var filename = command.getArgs()[0];
+        var sequence = parser.parse(filename);
+
+        if (sequence != null)
+        {
+            var counts = sequence.count();
+        }
     }
 }
