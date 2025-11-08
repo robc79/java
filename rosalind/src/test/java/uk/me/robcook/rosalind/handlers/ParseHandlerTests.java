@@ -1,11 +1,10 @@
 package uk.me.robcook.rosalind.handlers;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.matches;
-import static org.mockito.ArgumentMatchers.startsWith;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.when;
 
 import java.io.PrintStream;
 
@@ -13,110 +12,51 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import uk.me.robcook.rosalind.commands.ParseCommand;
+import uk.me.robcook.rosalind.domain.GeneticSequence;
+import uk.me.robcook.rosalind.parsers.fasta.FileParser;
 
 public class ParseHandlerTests
 {
     @Test
-    public void shouldParseValidFileSuccessfully()
+    public void shouldPrintSequenceIfParseSucceeds()
     {
         // Arrange
+        final String filename = "filename";
         var mockOut = Mockito.mock(PrintStream.class);
-        var mockErr = Mockito.mock(PrintStream.class);
-
-        var sut = new ParseHandler(mockOut, mockErr);
-
-        final var filename = "valid_sequence.txt";
-        var classLoader = getClass().getClassLoader();
-        var absoluteFilename = classLoader.getResource(filename).getFile();
-        var command = new ParseCommand(new String[] { absoluteFilename });
         
-        // Act
-        sut.handle(command);
+        var mockParser = Mockito.mock(FileParser.class);
+        var sequence = new GeneticSequence("description", "ACTG");
+        when(mockParser.parse(filename)).thenReturn(sequence);
 
-        // Assert
-        Mockito.verify(mockOut, atLeastOnce()).println(anyString());
-        Mockito.verify(mockErr, never()).println(anyString());
-    }
-
-    @Test
-    public void shouldFailIfFileDoesntExist()
-    {
-        // Arrange
-        var mockOut = Mockito.mock(PrintStream.class);
-        var mockErr = Mockito.mock(PrintStream.class);
-
-        var sut = new ParseHandler(mockOut, mockErr);
-
-        final var filename = "not_there.txt";
+        var sut = new ParseHandler(mockOut, mockParser);
         var command = new ParseCommand(new String[] { filename });
 
         // Act
         sut.handle(command);
 
         // Assert
-        Mockito.verify(mockErr, times(1)).println("<!> File not found.");
+        Mockito.verify(mockParser, times(1)).parse(filename);
+        Mockito.verify(mockOut, atLeastOnce()).println(anyString());
     }
 
     @Test
-    public void shouldFailIfHeaderMissing()
+    public void shouldPrintNothingIfParseFails()
     {
         // Arrange
+        final String filename = "filename";
         var mockOut = Mockito.mock(PrintStream.class);
-        var mockErr = Mockito.mock(PrintStream.class);
+        
+        var mockParser = Mockito.mock(FileParser.class);
+        when(mockParser.parse(filename)).thenReturn(null);
 
-        var sut = new ParseHandler(mockOut, mockErr);
-
-        final var filename = "missing_header.txt";
-        var classLoader = getClass().getClassLoader();
-        var absoluteFilename = classLoader.getResource(filename).getFile();
-        var command = new ParseCommand(new String[] { absoluteFilename });
+        var sut = new ParseHandler(mockOut, mockParser);
+        var command = new ParseCommand(new String[] { filename });
 
         // Act
         sut.handle(command);
 
         // Assert
-        Mockito.verify(mockErr, times(1)).println("<!> Invalid starting character, expected '>'.");
-    }
-
-    @Test
-    public void shoudlFailIfSequenceMissing()
-    {
-        // Arrange
-        var mockOut = Mockito.mock(PrintStream.class);
-        var mockErr = Mockito.mock(PrintStream.class);
-
-        var sut = new ParseHandler(mockOut, mockErr);
-
-        final var filename = "missing_sequence.txt";
-        var classLoader = getClass().getClassLoader();
-        var absoluteFilename = classLoader.getResource(filename).getFile();
-        var command = new ParseCommand(new String[] { absoluteFilename });
-
-        // Act
-        sut.handle(command);
-
-        // Assert
-        Mockito.verify(mockErr, times(1)).println("<!> Both description and sequence must be set.");
-    }
-
-    @Test
-    public void shoudlFailIfFileEmpty()
-    {
-        // Arrange
-        var mockOut = Mockito.mock(PrintStream.class);
-        var mockErr = Mockito.mock(PrintStream.class);
-
-        var sut = new ParseHandler(mockOut, mockErr);
-
-        final var filename = "empty_file.txt";
-        var classLoader = getClass().getClassLoader();
-        var absoluteFilename = classLoader.getResource(filename).getFile();
-        var command = new ParseCommand(new String[] { absoluteFilename });
-
-        // Act
-        sut.handle(command);
-
-        // Assert
-        Mockito.verify(mockErr, times(1)).println(startsWith("<!> No sequence found."));
+        Mockito.verify(mockParser, times(1)).parse(filename);
+        Mockito.verify(mockOut, never()).println(anyString());
     }
 }

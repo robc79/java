@@ -10,6 +10,7 @@ import uk.me.robcook.rosalind.commands.HelpCommand;
 import uk.me.robcook.rosalind.handlers.CommandDispatcher;
 import uk.me.robcook.rosalind.handlers.HelpHandler;
 import uk.me.robcook.rosalind.handlers.ParseHandler;
+import uk.me.robcook.rosalind.parsers.fasta.FastaFileParser;
 
 public class Ros
 {
@@ -43,7 +44,8 @@ public class Ros
         var parser = new ArgsParser();
         var dispatcher = new CommandDispatcher();
         
-        var parseHandler = new ParseHandler(System.out, System.err);
+        var fileParser = new FastaFileParser(System.err);
+        var parseHandler = new ParseHandler(System.out, fileParser);
         dispatcher.registerHandler(CommandName.parse, parseHandler);
 
         var helpHandler = new HelpHandler(System.out);
