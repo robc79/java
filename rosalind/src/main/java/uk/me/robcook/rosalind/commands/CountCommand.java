@@ -1,0 +1,42 @@
+package uk.me.robcook.rosalind.commands;
+
+import java.io.File;
+import java.text.ParseException;
+
+public class CountCommand extends Command
+{
+
+    public CountCommand(String[] args)
+    {
+        super(CommandName.count, args);
+    }
+
+    @Override
+    public void validateArguments(String[] args) throws ParseException
+    {
+        if (args.length != 1)
+        {
+            throw new ParseException("Invalid number of arguments for command.", -1);
+        }
+
+        var file = new File(args[0]);
+
+        if (!file.exists())
+        {
+            throw new ParseException("File supplied does not exist.", -1);
+        }
+    }
+
+    @Override
+    public String getHelpText()
+    {
+        var builder = new StringBuilder();
+        builder.append("Usage: Ros count filename\n\n");
+        builder.append("Where filename is a text file in the FASTA format. ");
+        builder.append("File can contain one genetic sequence.");
+        builder.append("\nOutputs a count of all individual nucleotides.");
+
+        return builder.toString();
+    }
+    
+}

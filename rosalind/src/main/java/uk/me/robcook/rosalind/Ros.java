@@ -8,6 +8,7 @@ import uk.me.robcook.rosalind.commands.Command;
 import uk.me.robcook.rosalind.commands.CommandName;
 import uk.me.robcook.rosalind.commands.HelpCommand;
 import uk.me.robcook.rosalind.handlers.CommandDispatcher;
+import uk.me.robcook.rosalind.handlers.CountHandler;
 import uk.me.robcook.rosalind.handlers.HelpHandler;
 import uk.me.robcook.rosalind.handlers.ParseHandler;
 import uk.me.robcook.rosalind.parsers.fasta.FastaFileParser;
@@ -50,6 +51,9 @@ public class Ros
 
         var helpHandler = new HelpHandler(System.out);
         dispatcher.registerHandler(CommandName.help, helpHandler);
+
+        var countHandler = new CountHandler(System.out, System.err);
+        dispatcher.registerHandler(CommandName.count, countHandler);
 
         var program = new Ros(parser, dispatcher);
         program.run(args);
