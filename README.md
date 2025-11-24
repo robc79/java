@@ -1,6 +1,6 @@
 # README
 
-This repository contains sample Java solutions for the following:
+This repository is for learning Java and its ecosystem, and contains solutions for the following:
 
 ## hello_world
 
