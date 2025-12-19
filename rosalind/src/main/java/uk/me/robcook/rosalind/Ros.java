@@ -46,7 +46,8 @@ public class Ros
         var dispatcher = new CommandDispatcher();
         
         var fileParser = new FastaFileParser(System.err);
-        var parseHandler = new ParseHandler(System.out, fileParser);
+        
+        var parseHandler = new ParseHandler(System.out, System.err, fileParser);
         dispatcher.registerHandler(CommandName.parse, parseHandler);
 
         var helpHandler = new HelpHandler(System.out);

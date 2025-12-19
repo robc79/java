@@ -34,5 +34,9 @@ public class CountHandler implements CommandHandler<CountCommand>
                 out.println(String.format("%s : %d", key, counts.get((key))));
             }
         }
+        else
+        {
+            err.println("<!> Unable to parse sequence.");
+        }
     }
 }
