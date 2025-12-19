@@ -27,6 +27,12 @@ public class CountHandler implements CommandHandler<CountCommand>
         if (sequence != null)
         {
             var counts = sequence.count();
+            out.println(String.format("Description -> %s", sequence.getDescription()));
+
+            for(var key : counts.keySet())
+            {
+                out.println(String.format("%s : %d", key, counts.get((key))));
+            }
         }
     }
 }
