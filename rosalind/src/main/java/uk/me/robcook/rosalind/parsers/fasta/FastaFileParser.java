@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import uk.me.robcook.rosalind.domain.GeneticSequence;
 import uk.me.robcook.rosalind.domain.GeneticSequenceBuilder;
+import uk.me.robcook.rosalind.domain.SequenceException;
 
 public class FastaFileParser implements FileParser
 {
@@ -41,7 +42,7 @@ public class FastaFileParser implements FileParser
                     return null;
                 }
             }
-            catch (ParseException | IllegalStateException ex)
+            catch (ParseException | IllegalStateException | SequenceException ex)
             {
                 err.println(String.format("<!> %s", ex.getMessage()));
             }
@@ -66,7 +67,8 @@ public class FastaFileParser implements FileParser
         return scanner;
     }
 
-    private GeneticSequence parse(final Scanner scanner) throws ParseException, IllegalStateException
+    private GeneticSequence parse(final Scanner scanner)
+        throws ParseException, IllegalStateException, SequenceException
     {
         if (!scanner.hasNextLine())
         {

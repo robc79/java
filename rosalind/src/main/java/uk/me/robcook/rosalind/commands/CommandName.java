@@ -4,5 +4,6 @@ public enum CommandName
 {
     help,
     parse,
-    count
+    count,
+    transcribe
 }

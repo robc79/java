@@ -24,7 +24,7 @@ public class GeneticSequenceBuilder
         return this;
     }
 
-    public GeneticSequence build() throws IllegalStateException
+    public GeneticSequence build() throws IllegalStateException, SequenceException
     {
         var sequenceString = sequence.toString();
 
@@ -33,6 +33,6 @@ public class GeneticSequenceBuilder
             throw new IllegalStateException("Both description and sequence must be set.");
         }
 
-        return new GeneticSequence(description, sequenceString);
+        return new GeneticSequence(description, sequenceString, null);
     }
 }
