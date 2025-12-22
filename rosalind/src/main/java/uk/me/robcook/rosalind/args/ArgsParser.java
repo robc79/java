@@ -8,6 +8,7 @@ import uk.me.robcook.rosalind.commands.CommandName;
 import uk.me.robcook.rosalind.commands.CountCommand;
 import uk.me.robcook.rosalind.commands.HelpCommand;
 import uk.me.robcook.rosalind.commands.ParseCommand;
+import uk.me.robcook.rosalind.commands.TranscribeCommand;
 
 public class ArgsParser implements ParseArgs
 {
@@ -43,6 +44,7 @@ public class ArgsParser implements ParseArgs
             case CommandName.help -> new HelpCommand(commandArgs);
             case CommandName.parse -> new ParseCommand(commandArgs);
             case CommandName.count -> new CountCommand(commandArgs);
+            case CommandName.transcribe -> new TranscribeCommand(commandArgs);
             default -> null;
         };
 
