@@ -9,14 +9,16 @@
             "name": "Ros",
             "request": "launch",
             "mainClass": "uk.me.robcook.rosalind.Ros",
-            "args": "${command:SpecifyProgramArgs}"
+            "args": "${command:SpecifyProgramArgs}",
+            "projectName": "rosalind"
         },
         {
             "type": "java",
             "name": "ColourIt",
             "request": "launch",
             "mainClass": "uk.me.robcook.gcp.ColourIt",
-            "args": "${command:SpecifyProgramArgs}"
+            "args": "${command:SpecifyProgramArgs}",
+            "projectName": "gcp"
         },
         {
             "type": "java",

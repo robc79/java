@@ -21,13 +21,13 @@ public class TranscribeCommand extends Command
         File dnaFile = null;
         File rnaFile = null;
 
-        if (args[0] == "-i" && args[2] == "-o")
+        if (args[0].equals("-i") && args[2].equals("-o"))
         {
             dnaFile = new File(args[1]);
             rnaFile = new File(args[3]);
         }
 
-        if (args[0] == "-o" && args[2] == "-i")
+        if (args[0].equals("-o") && args[2].equals("-i"))
         {
             rnaFile = new File(args[1]);
             dnaFile = new File(args[3]);
