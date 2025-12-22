@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 public class GeneticSequenceTests
 {
     @Test
-    public void shouldConstructNewGeneticSequence()
+    public void shouldConstructNewGeneticSequence() throws SequenceException
     {
         // Arrange
         final String description = "some description here";
         final String sequence = "ACGTTGACACT";
 
         // Act
-        var sut = new GeneticSequence(description, sequence);
+        var sut = new GeneticSequence(description, sequence, null);
 
         // Assert
         assertEquals(description, sut.getDescription());

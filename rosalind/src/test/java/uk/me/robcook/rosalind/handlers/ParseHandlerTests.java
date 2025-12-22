@@ -13,22 +13,23 @@ import org.mockito.Mockito;
 
 import uk.me.robcook.rosalind.commands.ParseCommand;
 import uk.me.robcook.rosalind.domain.GeneticSequence;
+import uk.me.robcook.rosalind.domain.SequenceException;
 import uk.me.robcook.rosalind.parsers.fasta.FileParser;
 
 public class ParseHandlerTests
 {
     @Test
-    public void shouldPrintSequenceIfParseSucceeds()
+    public void shouldPrintSequenceIfParseSucceeds() throws SequenceException
     {
         // Arrange
         final String filename = "filename";
         var mockOut = Mockito.mock(PrintStream.class);
-        
+        var mockErr = Mockito.mock(PrintStream.class);
         var mockParser = Mockito.mock(FileParser.class);
-        var sequence = new GeneticSequence("description", "ACTG");
+        var sequence = new GeneticSequence("description", "ACTG", null);
         when(mockParser.parse(filename)).thenReturn(sequence);
 
-        var sut = new ParseHandler(mockOut, mockParser);
+        var sut = new ParseHandler(mockOut, mockErr, mockParser);
         var command = new ParseCommand(new String[] { filename });
 
         // Act
@@ -45,11 +46,12 @@ public class ParseHandlerTests
         // Arrange
         final String filename = "filename";
         var mockOut = Mockito.mock(PrintStream.class);
+        var mockErr = Mockito.mock(PrintStream.class);
         
         var mockParser = Mockito.mock(FileParser.class);
         when(mockParser.parse(filename)).thenReturn(null);
 
-        var sut = new ParseHandler(mockOut, mockParser);
+        var sut = new ParseHandler(mockOut, mockErr, mockParser);
         var command = new ParseCommand(new String[] { filename });
 
         // Act

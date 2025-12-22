@@ -21,8 +21,7 @@ public class TranscribeHandler implements CommandHandler<TranscribeCommand>
     @Override
     public void handle(TranscribeCommand command)
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handle'");
+        // TODO: Orchestrate transcription.
     }
     
 }

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class GeneticSequenceBuilderTests
 {
     @Test
-    public void shouldConstructNewSequence()
+    public void shouldConstructNewSequence() throws SequenceException
     {
         // Arrange
         final String expectedDescription = "description";
