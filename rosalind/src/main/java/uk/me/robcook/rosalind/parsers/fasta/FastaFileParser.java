@@ -20,9 +20,9 @@ public class FastaFileParser implements FileParser
     }
 
     @Override
-    public GeneticSequence parse(String filename)
+    public GeneticSequence parse(File file)
     {
-        try (var scanner = makeScanner(filename, err))
+        try (var scanner = makeScanner(file.getName(), err))
         {
             if (scanner == null)
             {

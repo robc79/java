@@ -24,8 +24,7 @@ public class ParseHandler implements CommandHandler<ParseCommand>
 
     public void handle(ParseCommand command)
     {
-        var filename = command.getArgs()[0];
-        var sequence = parser.parse(filename);
+        var sequence = parser.parse(command.getParsedArgs().sequenceFile());
 
         if (sequence != null)
         {

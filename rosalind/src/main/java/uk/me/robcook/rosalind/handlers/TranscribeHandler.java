@@ -3,6 +3,8 @@ package uk.me.robcook.rosalind.handlers;
 import java.io.PrintStream;
 
 import uk.me.robcook.rosalind.commands.TranscribeCommand;
+import uk.me.robcook.rosalind.domain.DnaSequence;
+import uk.me.robcook.rosalind.domain.SequenceException;
 import uk.me.robcook.rosalind.parsers.fasta.FileParser;
 
 public class TranscribeHandler implements CommandHandler<TranscribeCommand>
@@ -22,6 +24,20 @@ public class TranscribeHandler implements CommandHandler<TranscribeCommand>
     public void handle(TranscribeCommand command)
     {
         // TODO: Orchestrate transcription.
+        var geneticSequence = parser.parse(command.getParsedArgs().dnaFile());
+
+        try
+        {
+            var dnaSequence = new DnaSequence(geneticSequence);
+            var rnaDescription = String.format("RNA transcription of %s", dnaSequence.getDescription());
+            var rnaSequence = dnaSequence.transcribe(rnaDescription);
+
+            // TODO: Save rna sequence to file.
+        }
+        catch (SequenceException ex)
+        {
+            // TODO: Print errror...
+        }
     }
     
 }

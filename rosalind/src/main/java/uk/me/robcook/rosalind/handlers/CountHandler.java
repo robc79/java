@@ -21,8 +21,7 @@ public class CountHandler implements CommandHandler<CountCommand>
     @Override
     public void handle(CountCommand command)
     {
-        var filename = command.getArgs()[0];
-        var sequence = parser.parse(filename);
+        var sequence = parser.parse(command.getParsedArgs().sequenceFile());
 
         if (sequence != null)
         {
