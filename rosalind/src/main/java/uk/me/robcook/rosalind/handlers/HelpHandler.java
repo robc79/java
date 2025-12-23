@@ -4,8 +4,10 @@ import java.io.PrintStream;
 
 import uk.me.robcook.rosalind.commands.Command;
 import uk.me.robcook.rosalind.commands.CommandName;
+import uk.me.robcook.rosalind.commands.CountCommand;
 import uk.me.robcook.rosalind.commands.HelpCommand;
 import uk.me.robcook.rosalind.commands.ParseCommand;
+import uk.me.robcook.rosalind.commands.TranscribeCommand;
 
 public class HelpHandler implements CommandHandler<HelpCommand>
 {
@@ -19,7 +21,7 @@ public class HelpHandler implements CommandHandler<HelpCommand>
     @Override
     public void handle(HelpCommand command)
     {
-        if (command.getArgs().length == 0)
+        if (command.getParsedArgs() == null)
         {
             dumpGenericHelp();
         }
@@ -44,15 +46,16 @@ public class HelpHandler implements CommandHandler<HelpCommand>
         out.println("For help on a specific command: Ros help command");
     }
 
-    private void dumpCommandHelp(Command command)
+    private void dumpCommandHelp(HelpCommand command)
     {
-        var commandArgs = command.getArgs();
-        var commandName = CommandName.valueOf(commandArgs[0]);
+        var commandName = command.getParsedArgs().commandName();
 
         var targetCommand = switch (commandName)
         {
-            case CommandName.parse -> new ParseCommand(commandArgs);
-            default -> new HelpCommand(commandArgs);
+            case CommandName.parse -> new ParseCommand(command.getArgs());
+            case CommandName.count -> new CountCommand(command.getArgs());
+            case CommandName.transcribe -> new TranscribeCommand(command.getArgs());
+            default -> new HelpCommand(command.getArgs());
         };
 
         out.println(targetCommand.getHelpText());

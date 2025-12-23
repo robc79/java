@@ -2,7 +2,9 @@ package uk.me.robcook.rosalind.commands;
 
 import java.text.ParseException;
 
-public class HelpCommand extends Command
+import uk.me.robcook.rosalind.args.HelpArgs;
+
+public class HelpCommand extends Command<HelpArgs>
 {
 
     public HelpCommand(String[] args)
@@ -11,8 +13,10 @@ public class HelpCommand extends Command
     }
 
     @Override
-    public void validateArguments(String[] args) throws ParseException
+    public void parseArguments(String[] args) throws ParseException
     {
+        CommandName commandName = null;
+
         if (args.length > 1)
         {
             throw new ParseException("Help expects zero or one arguments.", -1);
@@ -21,13 +25,15 @@ public class HelpCommand extends Command
         {
             try
             {
-                var commandName = CommandName.valueOf(args[0]);    
+                commandName = CommandName.valueOf(args[0]);    
             }
             catch (IllegalArgumentException ex)
             {
                 throw new ParseException("Invalid command supplied to help.", -1);
             }
         }
+
+        parsedArgs = new HelpArgs(commandName);
     }
 
     @Override

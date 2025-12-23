@@ -2,10 +2,12 @@ package uk.me.robcook.rosalind.commands;
 
 import java.text.ParseException;
 
-public abstract class Command
+public abstract class Command<T>
 {
     private final CommandName name;
     private final String[] args;
+    
+    protected T parsedArgs;
 
     public Command(final CommandName name, final String[] args)
     {
@@ -17,7 +19,9 @@ public abstract class Command
 
     public String[] getArgs() { return args; }
 
-    public abstract void validateArguments(String[] args) throws ParseException;
+    public abstract void parseArguments(String[] args) throws ParseException;
 
     public abstract String getHelpText();
+
+    public T getParsedArgs() { return parsedArgs; }
 }

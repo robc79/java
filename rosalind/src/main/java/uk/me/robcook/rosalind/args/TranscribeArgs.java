@@ -2,6 +2,6 @@ package uk.me.robcook.rosalind.args;
 
 import java.io.File;
 
-public record ParseArgs(File sourceFile)
+public record TranscribeArgs(File dnaFile, File rnaFile)
 {
 }

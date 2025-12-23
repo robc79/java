@@ -10,7 +10,7 @@ import uk.me.robcook.rosalind.commands.HelpCommand;
 import uk.me.robcook.rosalind.commands.ParseCommand;
 import uk.me.robcook.rosalind.commands.TranscribeCommand;
 
-public class ArgsParser implements ParseArgs
+public class ArgumentsParser implements ParseArguments
 {
     private Command command;
 
@@ -53,7 +53,7 @@ public class ArgsParser implements ParseArgs
             throw new ParseException("Command not found.", -1);
         }
 
-        command.validateArguments(commandArgs);
+        command.parseArguments(commandArgs);
 
         return command;
     }

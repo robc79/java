@@ -2,8 +2,8 @@ package uk.me.robcook.rosalind;
 
 import java.text.ParseException;
 
-import uk.me.robcook.rosalind.args.ArgsParser;
-import uk.me.robcook.rosalind.args.ParseArgs;
+import uk.me.robcook.rosalind.args.ArgumentsParser;
+import uk.me.robcook.rosalind.args.ParseArguments;
 import uk.me.robcook.rosalind.commands.Command;
 import uk.me.robcook.rosalind.commands.CommandName;
 import uk.me.robcook.rosalind.commands.HelpCommand;
@@ -16,10 +16,10 @@ import uk.me.robcook.rosalind.parsers.fasta.FastaFileParser;
 
 public class Ros
 {
-    private final ParseArgs parser;
+    private final ParseArguments parser;
     private final CommandDispatcher dispatcher;
 
-    public Ros(final ParseArgs parser, final CommandDispatcher dispatcher)
+    public Ros(final ParseArguments parser, final CommandDispatcher dispatcher)
     {
         this.parser = parser;
         this.dispatcher = dispatcher;
@@ -43,7 +43,7 @@ public class Ros
 
     public static void main(String[] args)
     {
-        var parser = new ArgsParser();
+        var parser = new ArgumentsParser();
         var dispatcher = new CommandDispatcher();
         
         var fileParser = new FastaFileParser(System.err);

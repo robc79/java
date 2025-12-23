@@ -3,16 +3,17 @@ package uk.me.robcook.rosalind.commands;
 import java.io.File;
 import java.text.ParseException;
 
-public class CountCommand extends Command
-{
+import uk.me.robcook.rosalind.args.CountArgs;
 
+public class CountCommand extends Command<CountArgs>
+{
     public CountCommand(String[] args)
     {
         super(CommandName.count, args);
     }
 
     @Override
-    public void validateArguments(String[] args) throws ParseException
+    public void parseArguments(String[] args) throws ParseException
     {
         if (args.length != 1)
         {
@@ -25,6 +26,8 @@ public class CountCommand extends Command
         {
             throw new ParseException("File supplied does not exist.", -1);
         }
+
+        parsedArgs = new CountArgs(file);
     }
 
     @Override

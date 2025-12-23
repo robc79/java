@@ -3,7 +3,9 @@ package uk.me.robcook.rosalind.commands;
 import java.io.File;
 import java.text.ParseException;
 
-public class TranscribeCommand extends Command
+import uk.me.robcook.rosalind.args.TranscribeArgs;
+
+public class TranscribeCommand extends Command<TranscribeArgs>
 {
     public TranscribeCommand(final String[] args)
     {
@@ -11,7 +13,7 @@ public class TranscribeCommand extends Command
     }
 
     @Override
-    public void validateArguments(String[] args) throws ParseException
+    public void parseArguments(String[] args) throws ParseException
     {
         if (args.length != 4)
         {
@@ -42,6 +44,8 @@ public class TranscribeCommand extends Command
         {
             throw new ParseException("DNA file supplied does not exist.", -1);
         }
+
+        parsedArgs = new TranscribeArgs(dnaFile, rnaFile);
     }
 
     @Override
