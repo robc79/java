@@ -2,8 +2,6 @@ package uk.me.robcook.rosalind.handlers;
 
 import java.io.PrintStream;
 
-import uk.me.robcook.rosalind.args.Args;
-import uk.me.robcook.rosalind.commands.Command;
 import uk.me.robcook.rosalind.commands.CountCommand;
 import uk.me.robcook.rosalind.parsers.fasta.FileParser;
 

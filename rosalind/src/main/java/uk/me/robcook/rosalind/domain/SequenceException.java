@@ -10,5 +10,6 @@ public class SequenceException extends Exception
     public SequenceException(String message, Throwable cause)
     {
         super(message, cause);
+        initCause(cause);
     }
 }

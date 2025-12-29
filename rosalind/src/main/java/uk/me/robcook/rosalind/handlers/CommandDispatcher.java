@@ -27,15 +27,13 @@ public class CommandDispatcher
     public <TCommand extends Command<? extends Args>> void invoke(TCommand command)
     {
         var commandName = command.getName();
+        var handler = handlers.get(commandName);
 
-        if (handlers.containsKey(commandName))
-        {
-            var handler = handlers.get(commandName);
-            ((CommandHandler<TCommand>) handler).handle(command);
-        }
-        else
+        if (handler == null)
         {
             throw new IllegalArgumentException("No handler registration found.");
         }
+
+        ((CommandHandler<TCommand>) handler).handle(command);
     }
 }
