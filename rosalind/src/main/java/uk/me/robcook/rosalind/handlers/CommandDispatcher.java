@@ -23,14 +23,15 @@ public class CommandDispatcher
         handlers.put(name, handler);
     }
 
-    public void invoke(Command<? extends Args> command)
+    @SuppressWarnings("unchecked")
+    public <TCommand extends Command<? extends Args>> void invoke(TCommand command)
     {
         var commandName = command.getName();
 
         if (handlers.containsKey(commandName))
         {
             var handler = handlers.get(commandName);
-            handler.handle(command);
+            ((CommandHandler<TCommand>) handler).handle(command);
         }
         else
         {
