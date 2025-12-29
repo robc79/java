@@ -5,5 +5,5 @@ public enum CommandName
     help,
     parse,
     count,
-    transcribe
+    transcribeDna
 }

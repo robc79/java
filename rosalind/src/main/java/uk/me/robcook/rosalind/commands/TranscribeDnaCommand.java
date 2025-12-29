@@ -3,13 +3,13 @@ package uk.me.robcook.rosalind.commands;
 import java.io.File;
 import java.text.ParseException;
 
-import uk.me.robcook.rosalind.args.TranscribeArgs;
+import uk.me.robcook.rosalind.args.TranscribeDnaArgs;
 
-public class TranscribeCommand extends Command<TranscribeArgs>
+public class TranscribeDnaCommand extends Command<TranscribeDnaArgs>
 {
-    public TranscribeCommand(final String[] args)
+    public TranscribeDnaCommand(final String[] args)
     {
-        super(CommandName.transcribe, args);
+        super(CommandName.transcribeDna, args);
     }
 
     @Override
@@ -47,14 +47,14 @@ public class TranscribeCommand extends Command<TranscribeArgs>
             throw new ParseException("DNA file supplied does not exist.", -1);
         }
 
-        parsedArgs = new TranscribeArgs(dnaFile, rnaFile);
+        parsedArgs = new TranscribeDnaArgs(dnaFile, rnaFile);
     }
 
     @Override
     public String getHelpText()
     {
         var builder = new StringBuilder();
-        builder.append("Usage: Ros transcribe -i dna_sequence_file -o rna_sequence_file\n\n");
+        builder.append("Usage: Ros transcribeDna -i dna_sequence_file -o rna_sequence_file\n\n");
         builder.append("Where dna_sequence_file is a text file in the FASTA format. ");
         builder.append("File can contain one DNA sequence. ");
         builder.append("Transcribes DNA to RNA and outputs to a file rna_sequence_file.");

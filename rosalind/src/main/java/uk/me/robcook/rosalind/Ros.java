@@ -11,7 +11,7 @@ import uk.me.robcook.rosalind.handlers.CommandDispatcher;
 import uk.me.robcook.rosalind.handlers.CountHandler;
 import uk.me.robcook.rosalind.handlers.HelpHandler;
 import uk.me.robcook.rosalind.handlers.ParseHandler;
-import uk.me.robcook.rosalind.handlers.TranscribeHandler;
+import uk.me.robcook.rosalind.handlers.TranscribeDnaHandler;
 import uk.me.robcook.rosalind.parsers.fasta.FastaFileParser;
 
 public class Ros
@@ -57,8 +57,8 @@ public class Ros
         var countHandler = new CountHandler(System.out, System.err, fileParser);
         dispatcher.registerHandler(CommandName.count, countHandler);
 
-        var transcribeHandler = new TranscribeHandler(System.out, System.err, fileParser);
-        dispatcher.registerHandler(CommandName.transcribe, transcribeHandler);
+        var transcribeHandler = new TranscribeDnaHandler(System.out, System.err, fileParser);
+        dispatcher.registerHandler(CommandName.transcribeDna, transcribeHandler);
 
         var program = new Ros(parser, dispatcher);
         program.run(args);

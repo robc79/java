@@ -19,7 +19,7 @@ public class HelpCommand extends Command<HelpArgs>
         
         CommandName commandName = null;
 
-        if (args.length > 1)
+        if (args.length < 1)
         {
             throw new ParseException("Help expects zero or one arguments.", -1);
         }

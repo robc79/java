@@ -8,7 +8,7 @@ import uk.me.robcook.rosalind.commands.CommandName;
 import uk.me.robcook.rosalind.commands.CountCommand;
 import uk.me.robcook.rosalind.commands.HelpCommand;
 import uk.me.robcook.rosalind.commands.ParseCommand;
-import uk.me.robcook.rosalind.commands.TranscribeCommand;
+import uk.me.robcook.rosalind.commands.TranscribeDnaCommand;
 
 public class ArgumentsParser implements ParseArguments
 {
@@ -44,7 +44,7 @@ public class ArgumentsParser implements ParseArguments
             case CommandName.help -> new HelpCommand(commandArgs);
             case CommandName.parse -> new ParseCommand(commandArgs);
             case CommandName.count -> new CountCommand(commandArgs);
-            case CommandName.transcribe -> new TranscribeCommand(commandArgs);
+            case CommandName.transcribeDna -> new TranscribeDnaCommand(commandArgs);
             default -> null;
         };
 

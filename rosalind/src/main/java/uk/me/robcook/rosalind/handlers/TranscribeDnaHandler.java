@@ -2,18 +2,18 @@ package uk.me.robcook.rosalind.handlers;
 
 import java.io.PrintStream;
 
-import uk.me.robcook.rosalind.commands.TranscribeCommand;
+import uk.me.robcook.rosalind.commands.TranscribeDnaCommand;
 import uk.me.robcook.rosalind.domain.DnaSequence;
 import uk.me.robcook.rosalind.domain.SequenceException;
 import uk.me.robcook.rosalind.parsers.fasta.FileParser;
 
-public class TranscribeHandler extends CommandHandler<TranscribeCommand>
+public class TranscribeDnaHandler extends CommandHandler<TranscribeDnaCommand>
 {
     private final PrintStream out;
     private final PrintStream err;
     private final FileParser parser;
 
-    public TranscribeHandler(final PrintStream out, final PrintStream err, final FileParser parser)
+    public TranscribeDnaHandler(final PrintStream out, final PrintStream err, final FileParser parser)
     {
         this.out = out;
         this.err = err;
@@ -21,9 +21,8 @@ public class TranscribeHandler extends CommandHandler<TranscribeCommand>
     }
 
     @Override
-    public void handle(TranscribeCommand command)
+    public void handle(TranscribeDnaCommand command)
     {
-        // TODO: Orchestrate transcription.
         var geneticSequence = parser.parse(command.getParsedArgs().dnaFile());
 
         try
