@@ -12,10 +12,10 @@ import uk.me.robcook.rosalind.commands.TranscribeCommand;
 
 public class ArgumentsParser implements ParseArguments
 {
-    private Command command;
+    private Command<?> command;
 
     @Override
-    public Command parseAndValidate(final String[] args) throws ParseException
+    public Command<?> parseAndValidate(final String[] args) throws ParseException
     {
         CommandName commandName;
         String[] commandArgs;
