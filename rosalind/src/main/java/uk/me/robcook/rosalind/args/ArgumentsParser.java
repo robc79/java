@@ -53,7 +53,7 @@ public class ArgumentsParser implements ParseArguments
             throw new ParseException("Command not found.", -1);
         }
 
-        command.parseArguments(commandArgs);
+        command.parseArguments();
 
         return command;
     }

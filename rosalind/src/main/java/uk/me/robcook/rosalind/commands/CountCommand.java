@@ -13,8 +13,10 @@ public class CountCommand extends Command<CountArgs>
     }
 
     @Override
-    public void parseArguments(String[] args) throws ParseException
+    public void parseArguments() throws ParseException
     {
+        var args = getArgs();
+        
         if (args.length != 1)
         {
             throw new ParseException("Invalid number of arguments for command.", -1);

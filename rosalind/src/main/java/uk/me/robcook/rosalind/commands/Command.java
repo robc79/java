@@ -21,7 +21,7 @@ public abstract class Command<T extends Args>
 
     public String[] getArgs() { return args; }
 
-    public abstract void parseArguments(String[] args) throws ParseException;
+    public abstract void parseArguments() throws ParseException;
 
     public abstract String getHelpText();
 

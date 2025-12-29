@@ -4,17 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.startsWith;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 
+import java.io.File;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import uk.me.robcook.rosalind.commands.ParseCommand;
-import uk.me.robcook.rosalind.handlers.ParseHandler;
 
 public class FastaFileParserTests
 {
@@ -29,9 +26,10 @@ public class FastaFileParserTests
         final var filename = "valid_sequence.txt";
         var classLoader = getClass().getClassLoader();
         var absoluteFilename = classLoader.getResource(filename).getFile();
-        
+        var file = new File(absoluteFilename);
+
         // Act
-        var sequence = sut.parse(absoluteFilename);
+        var sequence = sut.parse(file);
 
         // Assert
         assertNotNull(sequence);
@@ -47,9 +45,10 @@ public class FastaFileParserTests
         var sut = new FastaFileParser(mockErr);
 
         final var filename = "not_there.txt";
+        var file = new File(filename);
 
         // Act
-        var sequence = sut.parse(filename);
+        var sequence = sut.parse(file);
 
         // Assert
         assertNull(sequence);
@@ -67,9 +66,10 @@ public class FastaFileParserTests
         final var filename = "missing_header.txt";
         var classLoader = getClass().getClassLoader();
         var absoluteFilename = classLoader.getResource(filename).getFile();
+        var file = new File(absoluteFilename);
 
         // Act
-        var sequence = sut.parse(absoluteFilename);
+        var sequence = sut.parse(file);
 
         // Assert
         assertNull(sequence);
@@ -87,9 +87,10 @@ public class FastaFileParserTests
         final var filename = "missing_sequence.txt";
         var classLoader = getClass().getClassLoader();
         var absoluteFilename = classLoader.getResource(filename).getFile();
+        var file = new File(absoluteFilename);
 
         // Act
-        var sequence = sut.parse(absoluteFilename);
+        var sequence = sut.parse(file);
 
         // Assert
         assertNull(sequence);
@@ -107,9 +108,10 @@ public class FastaFileParserTests
         final var filename = "empty_file.txt";
         var classLoader = getClass().getClassLoader();
         var absoluteFilename = classLoader.getResource(filename).getFile();
+        var file = new File(absoluteFilename);
 
         // Act
-        var sequence = sut.parse(absoluteFilename);
+        var sequence = sut.parse(file);
 
         // Assert
         assertNull(sequence);

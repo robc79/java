@@ -22,7 +22,7 @@ public class FastaFileParser implements FileParser
     @Override
     public GeneticSequence parse(File file)
     {
-        try (var scanner = makeScanner(file.getName(), err))
+        try (var scanner = makeScanner(file, err))
         {
             if (scanner == null)
             {
@@ -51,13 +51,13 @@ public class FastaFileParser implements FileParser
         }
     }
 
-    private Scanner makeScanner(final String filename, final PrintStream err)
+    private Scanner makeScanner(final File file, final PrintStream err)
     {
         Scanner scanner = null;
 
         try
         {
-            scanner = new Scanner(new File(filename));
+            scanner = new Scanner(file);
         }
         catch (FileNotFoundException ex)
         {

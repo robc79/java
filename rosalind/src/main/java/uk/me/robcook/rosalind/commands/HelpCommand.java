@@ -13,8 +13,10 @@ public class HelpCommand extends Command<HelpArgs>
     }
 
     @Override
-    public void parseArguments(String[] args) throws ParseException
+    public void parseArguments() throws ParseException
     {
+        var args = getArgs();
+        
         CommandName commandName = null;
 
         if (args.length > 1)

@@ -13,8 +13,10 @@ public class TranscribeCommand extends Command<TranscribeArgs>
     }
 
     @Override
-    public void parseArguments(String[] args) throws ParseException
+    public void parseArguments() throws ParseException
     {
+        var args = getArgs();
+        
         if (args.length != 4)
         {
             throw new ParseException("Invalid number of arguments for command.", -1);
