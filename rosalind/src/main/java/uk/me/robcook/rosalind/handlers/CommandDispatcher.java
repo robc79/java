@@ -3,35 +3,35 @@ package uk.me.robcook.rosalind.handlers;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.me.robcook.rosalind.args.Args;
 import uk.me.robcook.rosalind.commands.Command;
-import uk.me.robcook.rosalind.commands.CommandName;
 
 public class CommandDispatcher
 {
-    private final Map<CommandName, CommandHandler> handlers;
+    private final Map<Class<?>, CommandHandler<?>> handlers;
     
     public CommandDispatcher()
     {
-        handlers = new HashMap<CommandName, CommandHandler>();
+        handlers = new HashMap<Class<?>, CommandHandler<?>>();
     }
 
-    public void registerHandler(final CommandName name, final CommandHandler handler)
+    public <T extends Command<? extends Args>> void registerHandler(
+        final Class<T> commandType,
+        final CommandHandler<T> handler)
     {
-        handlers.put(name, handler);
+        handlers.put(commandType, handler);
     }
 
-    public void invoke(Command command)
+    @SuppressWarnings("unchecked")
+    public <T extends Command<? extends Args>> void invoke(T command)
     {
-        var commandName = command.getName();
+        var handler = (CommandHandler<T>) handlers.get(command.getClass());
 
-        if (handlers.containsKey(commandName))
+        if (handler == null)
         {
-            var handler = handlers.get(commandName);
-            handler.handle(command);
+            throw new IllegalArgumentException("No handler for: " + command.getClass());
         }
-        else
-        {
-            throw new IllegalArgumentException("No handler registration found.");
-        }
+
+        handler.handle(command);
     }
 }

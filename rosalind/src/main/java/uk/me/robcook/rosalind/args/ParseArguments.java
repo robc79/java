@@ -6,5 +6,5 @@ import uk.me.robcook.rosalind.commands.Command;
 
 public interface ParseArguments
 {
-    Command parseAndValidate(String[] args) throws ParseException;
+    Command<?> parseAndValidate(String[] args) throws ParseException;
 }

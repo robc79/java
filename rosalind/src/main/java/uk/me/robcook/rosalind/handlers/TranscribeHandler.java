@@ -7,7 +7,7 @@ import uk.me.robcook.rosalind.domain.DnaSequence;
 import uk.me.robcook.rosalind.domain.SequenceException;
 import uk.me.robcook.rosalind.parsers.fasta.FileParser;
 
-public class TranscribeHandler implements CommandHandler<TranscribeCommand>
+public class TranscribeHandler extends CommandHandler<TranscribeCommand>
 {
     private final PrintStream out;
     private final PrintStream err;

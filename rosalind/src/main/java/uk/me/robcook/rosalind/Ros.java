@@ -5,8 +5,10 @@ import java.text.ParseException;
 import uk.me.robcook.rosalind.args.ArgumentsParser;
 import uk.me.robcook.rosalind.args.ParseArguments;
 import uk.me.robcook.rosalind.commands.Command;
-import uk.me.robcook.rosalind.commands.CommandName;
+import uk.me.robcook.rosalind.commands.CountCommand;
 import uk.me.robcook.rosalind.commands.HelpCommand;
+import uk.me.robcook.rosalind.commands.ParseCommand;
+import uk.me.robcook.rosalind.commands.TranscribeCommand;
 import uk.me.robcook.rosalind.handlers.CommandDispatcher;
 import uk.me.robcook.rosalind.handlers.CountHandler;
 import uk.me.robcook.rosalind.handlers.HelpHandler;
@@ -27,7 +29,7 @@ public class Ros
 
     public void run(String[] args)
     {
-        Command command = null;
+        Command<?> command = null;
 
         try
         {
@@ -49,16 +51,16 @@ public class Ros
         var fileParser = new FastaFileParser(System.err);
         
         var parseHandler = new ParseHandler(System.out, System.err, fileParser);
-        dispatcher.registerHandler(CommandName.parse, parseHandler);
+        dispatcher.registerHandler(ParseCommand.class, parseHandler);
 
         var helpHandler = new HelpHandler(System.out);
-        dispatcher.registerHandler(CommandName.help, helpHandler);
+        dispatcher.registerHandler(HelpCommand.class, helpHandler);
 
         var countHandler = new CountHandler(System.out, System.err, fileParser);
-        dispatcher.registerHandler(CommandName.count, countHandler);
+        dispatcher.registerHandler(CountCommand.class, countHandler);
 
         var transcribeHandler = new TranscribeHandler(System.out, System.err, fileParser);
-        dispatcher.registerHandler(CommandName.transcribe, transcribeHandler);
+        dispatcher.registerHandler(TranscribeCommand.class, transcribeHandler);
 
         var program = new Ros(parser, dispatcher);
         program.run(args);

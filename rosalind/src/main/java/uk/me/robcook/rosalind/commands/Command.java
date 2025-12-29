@@ -2,7 +2,9 @@ package uk.me.robcook.rosalind.commands;
 
 import java.text.ParseException;
 
-public abstract class Command<T>
+import uk.me.robcook.rosalind.args.Args;
+
+public abstract class Command<T extends Args>
 {
     private final CommandName name;
     private final String[] args;

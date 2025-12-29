@@ -2,6 +2,6 @@ package uk.me.robcook.rosalind.args;
 
 import uk.me.robcook.rosalind.commands.CommandName;
 
-public record HelpArgs(CommandName commandName)
+public record HelpArgs(CommandName commandName) implements Args
 {    
 }

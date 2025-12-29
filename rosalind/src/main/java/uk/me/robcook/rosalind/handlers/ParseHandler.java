@@ -6,7 +6,7 @@ import uk.me.robcook.rosalind.commands.ParseCommand;
 import uk.me.robcook.rosalind.domain.GeneticSequence;
 import uk.me.robcook.rosalind.parsers.fasta.FileParser;
 
-public class ParseHandler implements CommandHandler<ParseCommand>
+public class ParseHandler extends CommandHandler<ParseCommand>
 {
     private final PrintStream out;
     private final PrintStream err;

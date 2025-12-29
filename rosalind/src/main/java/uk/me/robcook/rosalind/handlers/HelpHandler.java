@@ -2,14 +2,13 @@ package uk.me.robcook.rosalind.handlers;
 
 import java.io.PrintStream;
 
-import uk.me.robcook.rosalind.commands.Command;
 import uk.me.robcook.rosalind.commands.CommandName;
 import uk.me.robcook.rosalind.commands.CountCommand;
 import uk.me.robcook.rosalind.commands.HelpCommand;
 import uk.me.robcook.rosalind.commands.ParseCommand;
 import uk.me.robcook.rosalind.commands.TranscribeCommand;
 
-public class HelpHandler implements CommandHandler<HelpCommand>
+public class HelpHandler extends CommandHandler<HelpCommand>
 {
     private final PrintStream out;
 

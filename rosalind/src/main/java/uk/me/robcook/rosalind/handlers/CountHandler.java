@@ -2,10 +2,12 @@ package uk.me.robcook.rosalind.handlers;
 
 import java.io.PrintStream;
 
+import uk.me.robcook.rosalind.args.Args;
+import uk.me.robcook.rosalind.commands.Command;
 import uk.me.robcook.rosalind.commands.CountCommand;
 import uk.me.robcook.rosalind.parsers.fasta.FileParser;
 
-public class CountHandler implements CommandHandler<CountCommand>
+public class CountHandler extends CommandHandler<CountCommand>
 {
     private final PrintStream out;
     private final PrintStream err;

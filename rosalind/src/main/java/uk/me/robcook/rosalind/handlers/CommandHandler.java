@@ -1,7 +1,9 @@
 package uk.me.robcook.rosalind.handlers;
 
-@FunctionalInterface
-public interface CommandHandler<TCommand>
+import uk.me.robcook.rosalind.args.Args;
+import uk.me.robcook.rosalind.commands.Command;
+
+public abstract class CommandHandler<TCommand extends Command<? extends Args>>
 {
-    void handle(TCommand command);
+    public abstract void handle(TCommand command);
 }
