@@ -5,20 +5,19 @@ import java.util.Map;
 
 import uk.me.robcook.rosalind.args.Args;
 import uk.me.robcook.rosalind.commands.Command;
-import uk.me.robcook.rosalind.commands.CommandName;
 
 public class CommandDispatcher
 {
-    private final Map<CommandName, CommandHandler<? extends Command<? extends Args>>> handlers;
+    private final Map<Class<?>, CommandHandler<? extends Command<? extends Args>>> handlers;
     
     public CommandDispatcher()
     {
-        handlers = new HashMap<CommandName, CommandHandler<? extends Command<? extends Args>>>();
+        handlers = new HashMap<Class<?>, CommandHandler<? extends Command<? extends Args>>>();
     }
 
-    public void registerHandler(
-        final CommandName name,
-        final CommandHandler<? extends Command<? extends Args>> handler)
+    public <T extends Command<? extends Args>> void registerHandler(
+        final Class<T> name,
+        final CommandHandler<T> handler)
     {
         handlers.put(name, handler);
     }
@@ -26,8 +25,7 @@ public class CommandDispatcher
     @SuppressWarnings("unchecked")
     public <TCommand extends Command<? extends Args>> void invoke(TCommand command)
     {
-        var commandName = command.getName();
-        var handler = handlers.get(commandName);
+        var handler = handlers.get(command.getClass());
 
         if (handler == null)
         {
